@@ -90,7 +90,10 @@ class LoadApi
         'loadUser' => [
             'application/json',
         ],
-        'resendLoadNotification' => [
+        'loadUserTokenPut' => [
+            'application/json',
+        ],
+        'resendBalanceNotification' => [
             'application/json',
         ],
     ];
@@ -380,13 +383,9 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -728,13 +727,9 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1015,13 +1010,9 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1350,13 +1341,9 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1652,13 +1639,9 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1973,13 +1956,9 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2004,42 +1983,42 @@ class LoadApi
     }
 
     /**
-     * Operation resendLoadNotification
+     * Operation loadUserTokenPut
      *
      * Resend Load Notification
      *
      * @param  string $user_token Token representing the user to load/fetch loads for (required)
      * @param  string $load_token Load token (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendLoadNotification'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loadUserTokenPut'] to see the possible values for this operation
      *
      * @throws \MassPayPhpSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MassPayPhpSdk\Model\ResendLoadNotification200Response
+     * @return \MassPayPhpSdk\Model\ResendBalanceNotification200Response
      */
-    public function resendLoadNotification($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['resendLoadNotification'][0])
+    public function loadUserTokenPut($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['loadUserTokenPut'][0])
     {
-        list($response) = $this->resendLoadNotificationWithHttpInfo($user_token, $load_token, $idempotency_key, $contentType);
+        list($response) = $this->loadUserTokenPutWithHttpInfo($user_token, $load_token, $idempotency_key, $contentType);
         return $response;
     }
 
     /**
-     * Operation resendLoadNotificationWithHttpInfo
+     * Operation loadUserTokenPutWithHttpInfo
      *
      * Resend Load Notification
      *
      * @param  string $user_token Token representing the user to load/fetch loads for (required)
      * @param  string $load_token Load token (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendLoadNotification'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loadUserTokenPut'] to see the possible values for this operation
      *
      * @throws \MassPayPhpSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MassPayPhpSdk\Model\ResendLoadNotification200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MassPayPhpSdk\Model\ResendBalanceNotification200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function resendLoadNotificationWithHttpInfo($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['resendLoadNotification'][0])
+    public function loadUserTokenPutWithHttpInfo($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['loadUserTokenPut'][0])
     {
-        $request = $this->resendLoadNotificationRequest($user_token, $load_token, $idempotency_key, $contentType);
+        $request = $this->loadUserTokenPutRequest($user_token, $load_token, $idempotency_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2078,23 +2057,23 @@ class LoadApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\MassPayPhpSdk\Model\ResendLoadNotification200Response' === '\SplFileObject') {
+                    if ('\MassPayPhpSdk\Model\ResendBalanceNotification200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MassPayPhpSdk\Model\ResendLoadNotification200Response' !== 'string') {
+                        if ('\MassPayPhpSdk\Model\ResendBalanceNotification200Response' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MassPayPhpSdk\Model\ResendLoadNotification200Response', []),
+                        ObjectSerializer::deserialize($content, '\MassPayPhpSdk\Model\ResendBalanceNotification200Response', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MassPayPhpSdk\Model\ResendLoadNotification200Response';
+            $returnType = '\MassPayPhpSdk\Model\ResendBalanceNotification200Response';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2115,7 +2094,7 @@ class LoadApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MassPayPhpSdk\Model\ResendLoadNotification200Response',
+                        '\MassPayPhpSdk\Model\ResendBalanceNotification200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2126,21 +2105,21 @@ class LoadApi
     }
 
     /**
-     * Operation resendLoadNotificationAsync
+     * Operation loadUserTokenPutAsync
      *
      * Resend Load Notification
      *
      * @param  string $user_token Token representing the user to load/fetch loads for (required)
      * @param  string $load_token Load token (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendLoadNotification'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loadUserTokenPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resendLoadNotificationAsync($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['resendLoadNotification'][0])
+    public function loadUserTokenPutAsync($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['loadUserTokenPut'][0])
     {
-        return $this->resendLoadNotificationAsyncWithHttpInfo($user_token, $load_token, $idempotency_key, $contentType)
+        return $this->loadUserTokenPutAsyncWithHttpInfo($user_token, $load_token, $idempotency_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2149,22 +2128,22 @@ class LoadApi
     }
 
     /**
-     * Operation resendLoadNotificationAsyncWithHttpInfo
+     * Operation loadUserTokenPutAsyncWithHttpInfo
      *
      * Resend Load Notification
      *
      * @param  string $user_token Token representing the user to load/fetch loads for (required)
      * @param  string $load_token Load token (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendLoadNotification'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loadUserTokenPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resendLoadNotificationAsyncWithHttpInfo($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['resendLoadNotification'][0])
+    public function loadUserTokenPutAsyncWithHttpInfo($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['loadUserTokenPut'][0])
     {
-        $returnType = '\MassPayPhpSdk\Model\ResendLoadNotification200Response';
-        $request = $this->resendLoadNotificationRequest($user_token, $load_token, $idempotency_key, $contentType);
+        $returnType = '\MassPayPhpSdk\Model\ResendBalanceNotification200Response';
+        $request = $this->loadUserTokenPutRequest($user_token, $load_token, $idempotency_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2203,30 +2182,30 @@ class LoadApi
     }
 
     /**
-     * Create request for operation 'resendLoadNotification'
+     * Create request for operation 'loadUserTokenPut'
      *
      * @param  string $user_token Token representing the user to load/fetch loads for (required)
      * @param  string $load_token Load token (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendLoadNotification'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loadUserTokenPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function resendLoadNotificationRequest($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['resendLoadNotification'][0])
+    public function loadUserTokenPutRequest($user_token, $load_token, $idempotency_key = null, string $contentType = self::contentTypes['loadUserTokenPut'][0])
     {
 
         // verify the required parameter 'user_token' is set
         if ($user_token === null || (is_array($user_token) && count($user_token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_token when calling resendLoadNotification'
+                'Missing the required parameter $user_token when calling loadUserTokenPut'
             );
         }
 
         // verify the required parameter 'load_token' is set
         if ($load_token === null || (is_array($load_token) && count($load_token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $load_token when calling resendLoadNotification'
+                'Missing the required parameter $load_token when calling loadUserTokenPut'
             );
         }
 
@@ -2296,13 +2275,322 @@ class LoadApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
+            $headers['Authorization'] = $apiKey;
         }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation resendBalanceNotification
+     *
+     * Resend Balance Notification
+     *
+     * @param  string $user_token Token representing the user who owns the wallet (required)
+     * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
+     * @param  string $wallet_token Optional wallet token. If none is provided, select the first wallet available (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendBalanceNotification'] to see the possible values for this operation
+     *
+     * @throws \MassPayPhpSdk\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MassPayPhpSdk\Model\ResendBalanceNotification200Response
+     */
+    public function resendBalanceNotification($user_token, $idempotency_key = null, $wallet_token = null, string $contentType = self::contentTypes['resendBalanceNotification'][0])
+    {
+        list($response) = $this->resendBalanceNotificationWithHttpInfo($user_token, $idempotency_key, $wallet_token, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation resendBalanceNotificationWithHttpInfo
+     *
+     * Resend Balance Notification
+     *
+     * @param  string $user_token Token representing the user who owns the wallet (required)
+     * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
+     * @param  string $wallet_token Optional wallet token. If none is provided, select the first wallet available (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendBalanceNotification'] to see the possible values for this operation
+     *
+     * @throws \MassPayPhpSdk\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MassPayPhpSdk\Model\ResendBalanceNotification200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function resendBalanceNotificationWithHttpInfo($user_token, $idempotency_key = null, $wallet_token = null, string $contentType = self::contentTypes['resendBalanceNotification'][0])
+    {
+        $request = $this->resendBalanceNotificationRequest($user_token, $idempotency_key, $wallet_token, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\MassPayPhpSdk\Model\ResendBalanceNotification200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\MassPayPhpSdk\Model\ResendBalanceNotification200Response' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MassPayPhpSdk\Model\ResendBalanceNotification200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MassPayPhpSdk\Model\ResendBalanceNotification200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MassPayPhpSdk\Model\ResendBalanceNotification200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation resendBalanceNotificationAsync
+     *
+     * Resend Balance Notification
+     *
+     * @param  string $user_token Token representing the user who owns the wallet (required)
+     * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
+     * @param  string $wallet_token Optional wallet token. If none is provided, select the first wallet available (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendBalanceNotification'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function resendBalanceNotificationAsync($user_token, $idempotency_key = null, $wallet_token = null, string $contentType = self::contentTypes['resendBalanceNotification'][0])
+    {
+        return $this->resendBalanceNotificationAsyncWithHttpInfo($user_token, $idempotency_key, $wallet_token, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation resendBalanceNotificationAsyncWithHttpInfo
+     *
+     * Resend Balance Notification
+     *
+     * @param  string $user_token Token representing the user who owns the wallet (required)
+     * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
+     * @param  string $wallet_token Optional wallet token. If none is provided, select the first wallet available (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendBalanceNotification'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function resendBalanceNotificationAsyncWithHttpInfo($user_token, $idempotency_key = null, $wallet_token = null, string $contentType = self::contentTypes['resendBalanceNotification'][0])
+    {
+        $returnType = '\MassPayPhpSdk\Model\ResendBalanceNotification200Response';
+        $request = $this->resendBalanceNotificationRequest($user_token, $idempotency_key, $wallet_token, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'resendBalanceNotification'
+     *
+     * @param  string $user_token Token representing the user who owns the wallet (required)
+     * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
+     * @param  string $wallet_token Optional wallet token. If none is provided, select the first wallet available (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resendBalanceNotification'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function resendBalanceNotificationRequest($user_token, $idempotency_key = null, $wallet_token = null, string $contentType = self::contentTypes['resendBalanceNotification'][0])
+    {
+
+        // verify the required parameter 'user_token' is set
+        if ($user_token === null || (is_array($user_token) && count($user_token) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $user_token when calling resendBalanceNotification'
+            );
+        }
+
+
+
+
+        $resourcePath = '/wallet/{user_token}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $wallet_token,
+            'wallet_token', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($idempotency_key !== null) {
+            $headerParams['Idempotency-Key'] = ObjectSerializer::toHeaderValue($idempotency_key);
+        }
+
+        // path params
+        if ($user_token !== null) {
+            $resourcePath = str_replace(
+                '{' . 'user_token' . '}',
+                ObjectSerializer::toPathValue($user_token),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

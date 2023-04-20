@@ -19,10 +19,12 @@ Name | Type | Description | Notes
 **pickup_code** | **string** | Code/pin that is required when collecting the money. Should be provided to the recipient to present to payout location. |
 **status** | **string** | The status of the transaction |
 **payer_logo** | **string** | base64 representation of the payer logo | [optional]
-**payer_name** | **string** | Name of payer | [optional]
-**delivery_type** | **string** |  | [optional]
-**country_code** | **string** | Country code [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) | [optional]
+**payer_name** | **string** | Name of payer |
+**delivery_type** | **string** | The type of delivery |
+**country_code** | **string** | Country code [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) |
 **metadata** | **object** | Optional JSON object with attributes that can later be searched to locate this payout. Do not include PII as this object is not encrypted. | [optional]
 **estimated_availability** | **\DateTime** | Estimated availability of funds. When funds would be available to pickup/deposited |
+**status_reason** | **string** | Optional. Contains the reason for the status change. Most commonly used for CANCELLED status with the reason for cancellation | [optional]
+**attrs** | **object** | The relevant attributes that were used to fulfill this payout | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -16,7 +16,7 @@ getAccountBalance(): \MassPayPhpSdk\Model\AvailableBalanceTxnResp[]
 
 Get current available balance
 
-Retrieves the current available balances.
+This **GET** endpoint is used to retrieve the current available balance for the MassPay account. <br> You can use this endpoint to obtain information about the current balance in your account. <br> There are no required parameters needed to access this endpoint. <br> The response will include a JSON objects containing details for the current available balance, including the token, balance and `currency_code`.
 
 ### Example
 
@@ -25,13 +25,10 @@ Retrieves the current available balances.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\AccountApi(
@@ -59,7 +56,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -78,7 +75,7 @@ getAccountStatement($start_date, $ending_date): \MassPayPhpSdk\Model\GetAccountS
 
 Get certified account statement
 
-Retreived a certified PDF ledger statement for a provided timeframe
+This **GET** endpoint is used to retrieve a certified PDF ledger statement for a provided timeframe. <br> You can use this endpoint to obtain a ledger statement for your MassPay account for a specific time period. <br> To use this endpoint, you need to provide the `start_date` and `ending_date` as required parameters in the Query string of the URL. <br> The response will include a certified PDF ledger statement containing transaction details for the specified timeframe.
 
 ### Example
 
@@ -87,13 +84,10 @@ Retreived a certified PDF ledger statement for a provided timeframe
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\AccountApi(
@@ -126,7 +120,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

@@ -16,7 +16,7 @@ getUserSpendbacksByToken($user_token, $idempotency_key): \MassPayPhpSdk\Model\Sp
 
 Get history of spend backs by user token
 
-Gets a list of all historical spendbacks for a provided user token.
+This **GET** endpoint is used to retrieve the history of spendbacks for a specific user token. <br> You can use this endpoint to help manage your payment operations and track the usage of funds by your users. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The endpoint will then return a list of all the historical spendbacks for the provided user token. The response will contain a JSON array with details for each spendback transaction.
 
 ### Example
 
@@ -25,13 +25,10 @@ Gets a list of all historical spendbacks for a provided user token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\SpendBackApi(
@@ -64,7 +61,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -83,7 +80,7 @@ initiateSpendback($user_token, $idempotency_key, $spend_back_txn): \MassPayPhpSd
 
 Initiate a spend back transaction
 
-Initiates a spend back transaction to a provided user token.
+This **POST** endpoint is used to initiate a spendback transaction to a provided user token. <br> You can use this endpoint to enable spendback transactions for your users and help them manage their funds more effectively. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path, along with the required parameters in the request Body, including `client_spendback_id`, `source_token`, `source_currency_code` and `amount`. <br> The endpoint will then initiate the spendback transaction, transferring funds from the source token to the user token. The response will contain a JSON object indicating the status of the request and any relevant transaction details.
 
 ### Example
 
@@ -92,13 +89,10 @@ Initiates a spend back transaction to a provided user token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\SpendBackApi(
@@ -133,7 +127,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

@@ -446,7 +446,7 @@ class LoadTxn implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets source_currency_code
      *
-     * @param string|null $source_currency_code The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided
+     * @param string|null $source_currency_code The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided. There is a special currency case for PNTS - learn more [here] (#Points)
      *
      * @return self
      */

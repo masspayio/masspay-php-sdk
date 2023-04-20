@@ -19,7 +19,7 @@ commitPayoutTxn($user_token, $payout_token, $idempotency_key): \MassPayPhpSdk\Mo
 
 Commit payout transaction
 
-Commits a previously initiated transaction.
+This **PUT** endpoint is used to commit a previously created payout transaction. <br> Once a payout transaction is created, you can use this endpoint to commit the transaction and initiate the actual payout. <br> To use this endpoint, you need to provide the `user_token` and `payout_token` of the payout transaction you want to commit in the URL Path. <br> The response will include a JSON object containing details about the committed payout transaction, including the `payout_token`, `payout_status`, `pickup_code` and possible errors.
 
 ### Example
 
@@ -28,13 +28,10 @@ Commits a previously initiated transaction.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\PayoutApi(
@@ -69,7 +66,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -83,12 +80,12 @@ try {
 ## `getPayoutStatus()`
 
 ```php
-getPayoutStatus($user_token, $payout_token, $idempotency_key, $force_status_update): \MassPayPhpSdk\Model\PayoutTxnResp
+getPayoutStatus($user_token, $payout_token, $idempotency_key, $force_status_update, $include_payer_logo): \MassPayPhpSdk\Model\PayoutTxnResp
 ```
 
 Get status of a payout by payout token
 
-Retrieves information including status update for a payout token
+This **GET** endpoint is used to retrieve the status of a payout transaction for a user with the specified token and payout token. <br> You can use this endpoint to check the status of a specific payout transaction, including whether the payout has been successfully processed or if there was an error. <br> To use this endpoint, you need to provide the `user_token` and `payout_token` in the URL Path. <br> The response will include a JSON object containing details about the payout transaction.
 
 ### Example
 
@@ -97,13 +94,10 @@ Retrieves information including status update for a payout token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\PayoutApi(
@@ -116,9 +110,10 @@ $user_token = 'user_token_example'; // string | Token representing the user to p
 $payout_token = payout_ed75acf2-1c35-4073-9adc-389084d1e96b; // string | Token representing the trsanaction. Retrieved from `/payout/{user_token}`
 $idempotency_key = 'idempotency_key_example'; // string | Unique key to prevent duplicate processing
 $force_status_update = true; // bool | Attempts to get an updated status update from the payout destination
+$include_payer_logo = True; // bool | Whether to include the payer logo in base64 format.
 
 try {
-    $result = $apiInstance->getPayoutStatus($user_token, $payout_token, $idempotency_key, $force_status_update);
+    $result = $apiInstance->getPayoutStatus($user_token, $payout_token, $idempotency_key, $force_status_update, $include_payer_logo);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PayoutApi->getPayoutStatus: ', $e->getMessage(), PHP_EOL;
@@ -133,6 +128,7 @@ try {
 | **payout_token** | **string**| Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60; | |
 | **idempotency_key** | **string**| Unique key to prevent duplicate processing | [optional] |
 | **force_status_update** | **bool**| Attempts to get an updated status update from the payout destination | [optional] [default to false] |
+| **include_payer_logo** | **bool**| Whether to include the payer logo in base64 format. | [optional] |
 
 ### Return type
 
@@ -140,7 +136,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -159,7 +155,7 @@ getTransactionConfirmationDetails($user_token, $payout_token, $idempotency_key):
 
 Get transaction confirmation details
 
-Obtains a PDF with all the details of the payout
+This **PATCH** endpoint is used to obtain a PDF document with all the details of a payout transaction for a user with the specified token and payout token. <br> You can use this endpoint to obtain confirmation details about a specific payout transaction. <br> To use this endpoint, you need to provide the `user_token` and `payout_token` in the URL Path. <br> The response will include a PDF document containing all the details of the payout transaction.
 
 ### Example
 
@@ -168,13 +164,10 @@ Obtains a PDF with all the details of the payout
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\PayoutApi(
@@ -209,7 +202,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -228,7 +221,7 @@ getUserPayoutsByToken($user_token, $idempotency_key, $include_payer_logos): \Mas
 
 Get history of payouts by user token
 
-Gets a list of all historical payouts for a provided user token.
+This **GET** endpoint is used to retrieve the payout history for a user with the specified token. <br> You can use this endpoint to view all payouts made to a user, including the `payout_token`, `destinantion_token` and `destination_amount`. <br> To use this endpoint, you need to provide the user token of the recipient in the URL Path. <br> The response will include a JSON object containing an array of payout transactions for the specified user, with each transaction including details such as the transaction ID, payout amount, currency, payout status, and date and time of the payout.
 
 ### Example
 
@@ -237,13 +230,10 @@ Gets a list of all historical payouts for a provided user token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\PayoutApi(
@@ -278,7 +268,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -297,7 +287,7 @@ initiatePayout($user_token, $payout_txn, $idempotency_key, $limit): \MassPayPhpS
 
 Initiate a payout transaction
 
-Initiates a payout transaction to a provided user token.
+This **POST** endpoint is used to initiate a payout transaction from your account to a user with a specified token. <br> You can use this endpoint to pay out funds to your users, such as payments for services rendered or rewards for completing tasks. To use this endpoint, you need to provide the user token of the recipient in the URL Path. <br> The request body should include the funding source (`source_token`), payout destination (`destination_token`) and specify in which currency the payout should be made (`destination_currency_code`). <br> As a response API will return all details about your payout transaction.
 
 ### Example
 
@@ -306,13 +296,10 @@ Initiates a payout transaction to a provided user token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\PayoutApi(
@@ -349,7 +336,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

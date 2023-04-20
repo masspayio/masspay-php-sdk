@@ -20,7 +20,7 @@ createAutopayRule($user_token, $wallet_token, $autopay_rule): \MassPayPhpSdk\Mod
 
 Add autopay rule
 
-Create an autopay rule that will automatically initiate a payout whenever the `wallet_token` is loaded
+This **POST** endpoint is used to add an autopay rule that will initiate a payout whenever the provided wallet token is loaded. <br> You can use this endpoint to create an autopay rule that automatically sends a percentage of incoming load to a specific destination. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the `destination_token` and percentage of incoming load that should be autopaid to the `destination_token` in the request Body. <br> The response will include a JSON object containing the details of the created autopay rule, including the token, `destination_token` and percentage.
 
 ### Example
 
@@ -29,13 +29,10 @@ Create an autopay rule that will automatically initiate a payout whenever the `w
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\WalletApi(
@@ -70,7 +67,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -89,7 +86,7 @@ deleteAutopayRule($user_token, $wallet_token, $token)
 
 Delete autopay rule
 
-Deletes an autopay rule
+This **DELETE** endpoint is used to delete an existing autopay rule. <br> You can use this endpoint to remove an autopay rule that is no longer needed. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the token of the autopay rule you wish to delete in the request Body. <br> The response will include a message indicating the success of the deletion.
 
 ### Example
 
@@ -98,13 +95,10 @@ Deletes an autopay rule
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\WalletApi(
@@ -138,7 +132,7 @@ void (empty response body)
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -157,7 +151,7 @@ getAutopayRules($user_token, $wallet_token): \MassPayPhpSdk\Model\AutopayResp[]
 
 Get all autopay rules
 
-Obtain list of all autopay rules currently applied to this wallet
+This **GET** endpoint is used to retrieve all autopay rules currently applied to the provided wallet token. <br> You can use this endpoint to obtain information about the autopay rules associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON array containing details for each autopay rule, including the token, `destination_token` and percentage.
 
 ### Example
 
@@ -166,13 +160,10 @@ Obtain list of all autopay rules currently applied to this wallet
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\WalletApi(
@@ -205,7 +196,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -224,7 +215,7 @@ getWallet($user_token, $idempotency_key): \MassPayPhpSdk\Model\WalletTxnResp[]
 
 Retrieve all available wallets for a user
 
-Retrieves all available wallets for a provided user token.
+This **GET** endpoint is used to retrieve all available wallets for a provided user token. <br> You can use this endpoint to obtain information about the wallets associated with the provided user token. <br> To use this endpoint, you need to provide the `user_token` as a required parameter in the URL Path. <br> The response will include a JSON array containing details for each wallet including `user_token`, `balance`, `currency_code`.
 
 ### Example
 
@@ -233,13 +224,10 @@ Retrieves all available wallets for a provided user token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\WalletApi(
@@ -272,7 +260,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -291,7 +279,7 @@ getWalletCardInfo($user_token, $wallet_token): \MassPayPhpSdk\Model\GetWalletCar
 
 Get MassPay Card Information
 
-Retrieves MassPay card information that is associated with the provided wallet token
+This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. <br> You can use this endpoint to obtain information about the MassPay card associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
 
 ### Example
 
@@ -300,13 +288,10 @@ Retrieves MassPay card information that is associated with the provided wallet t
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\WalletApi(
@@ -339,7 +324,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -358,7 +343,7 @@ updateWalletCardInfo($user_token, $wallet_token, $pin, $status)
 
 Update MassPay Card Information
 
-Update card pin number or/and status
+This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. <br> You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. <br> The endpoint will then update the card information for the provided user and wallet token.
 
 ### Example
 
@@ -367,13 +352,10 @@ Update card pin number or/and status
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\WalletApi(
@@ -409,7 +391,7 @@ void (empty response body)
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

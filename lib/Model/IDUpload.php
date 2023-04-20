@@ -1,6 +1,6 @@
 <?php
 /**
- * AttrVelocityRequestInner
+ * IDUpload
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \MassPayPhpSdk\ObjectSerializer;
 
 /**
- * AttrVelocityRequestInner Class Doc Comment
+ * IDUpload Class Doc Comment
  *
  * @category Class
  * @package  MassPayPhpSdk
@@ -41,7 +41,7 @@ use \MassPayPhpSdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class IDUpload implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AttrVelocityRequest_inner';
+    protected static $openAPIModelName = 'IDUpload';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'value' => 'string'
+        'content' => 'string'
     ];
 
     /**
@@ -71,7 +71,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'value' => null
+        'content' => null
     ];
 
     /**
@@ -81,7 +81,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'type' => false,
-		'value' => false
+		'content' => false
     ];
 
     /**
@@ -171,7 +171,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'value' => 'value'
+        'content' => 'content'
     ];
 
     /**
@@ -181,7 +181,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $setters = [
         'type' => 'setType',
-        'value' => 'setValue'
+        'content' => 'setContent'
     ];
 
     /**
@@ -191,7 +191,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $getters = [
         'type' => 'getType',
-        'value' => 'getValue'
+        'content' => 'getContent'
     ];
 
     /**
@@ -235,41 +235,9 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    public const TYPE_CARD_NUMBER = 'CardNumber';
-    public const TYPE_BANK_ACCOUNT_TYPE = 'BankAccountType';
-    public const TYPE_BANK_ACCOUNT_NUMBER = 'BankAccountNumber';
-    public const TYPE_BANK_ACCOUNT_BRANCH_NUMBER = 'BankAccountBranchNumber';
-    public const TYPE_BANK_NAME = 'BankName';
-    public const TYPE_PHONE_NUMBER = 'PhoneNumber';
-    public const TYPE_GENDER = 'Gender';
-    public const TYPE_IDENTIFICATION_NUMBER = 'IdentificationNumber';
-    public const TYPE_BILL_REFERENCE_NUMBER = 'BillReferenceNumber';
-    public const TYPE_BANK_ROUTING_NUMBER = 'BankRoutingNumber';
-    public const TYPE_BANK_ACCOUNT_NAME = 'BankAccountName';
-    public const TYPE_MAIDEN_NAME = 'MaidenName';
-    public const TYPE_SOCIAL_SECURITY = 'SocialSecurity';
-    public const TYPE_EMPLOYMENT_NAME = 'EmploymentName';
-    public const TYPE_EMPLOYMENT_ADDRESS = 'EmploymentAddress';
-    public const TYPE_EMPLOYMENT_PHONE = 'EmploymentPhone';
-    public const TYPE_EMPLOYMENT_OCCUPATION = 'EmploymentOccupation';
-    public const TYPE_EMPLOYMENT_SUPERVISOR = 'EmploymentSupervisor';
-    public const TYPE_REMITTANCE_REASON = 'RemittanceReason';
-    public const TYPE_RELATIONSHIP = 'Relationship';
-    public const TYPE_SECOND_LAST_NAME = 'SecondLastName';
-    public const TYPE_SWIFT = 'SWIFT';
-    public const TYPE_BIRTH_COUNTRY = 'BirthCountry';
-    public const TYPE_SOURCE_OF_FUNDS = 'SourceOfFunds';
-    public const TYPE_DATE_OF_BIRTH = 'DateOfBirth';
-    public const TYPE_CARD_EXPIRATION = 'CardExpiration';
-    public const TYPE_CARD_ZIP = 'CardZip';
-    public const TYPE_IDENTIFICATION_TYPE = 'IdentificationType';
-    public const TYPE_BANK_CITY = 'BankCity';
-    public const TYPE_BANK_STATE = 'BankState';
-    public const TYPE_ID_SELFIE_COLLECTION = 'IDSelfieCollection';
-    public const TYPE_CITY = 'City';
-    public const TYPE_COUNTRY = 'Country';
-    public const TYPE_IDENTIFICATION_EXPIRATION = 'IdentificationExpiration';
-    public const TYPE_ADDRESS1 = 'Address1';
+    public const TYPE_FACE = 'face';
+    public const TYPE_DOCUMENT_FRONT = 'document-front';
+    public const TYPE_DOCUMENT_BACK = 'document-back';
 
     /**
      * Gets allowable values of the enum
@@ -279,41 +247,9 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_CARD_NUMBER,
-            self::TYPE_BANK_ACCOUNT_TYPE,
-            self::TYPE_BANK_ACCOUNT_NUMBER,
-            self::TYPE_BANK_ACCOUNT_BRANCH_NUMBER,
-            self::TYPE_BANK_NAME,
-            self::TYPE_PHONE_NUMBER,
-            self::TYPE_GENDER,
-            self::TYPE_IDENTIFICATION_NUMBER,
-            self::TYPE_BILL_REFERENCE_NUMBER,
-            self::TYPE_BANK_ROUTING_NUMBER,
-            self::TYPE_BANK_ACCOUNT_NAME,
-            self::TYPE_MAIDEN_NAME,
-            self::TYPE_SOCIAL_SECURITY,
-            self::TYPE_EMPLOYMENT_NAME,
-            self::TYPE_EMPLOYMENT_ADDRESS,
-            self::TYPE_EMPLOYMENT_PHONE,
-            self::TYPE_EMPLOYMENT_OCCUPATION,
-            self::TYPE_EMPLOYMENT_SUPERVISOR,
-            self::TYPE_REMITTANCE_REASON,
-            self::TYPE_RELATIONSHIP,
-            self::TYPE_SECOND_LAST_NAME,
-            self::TYPE_SWIFT,
-            self::TYPE_BIRTH_COUNTRY,
-            self::TYPE_SOURCE_OF_FUNDS,
-            self::TYPE_DATE_OF_BIRTH,
-            self::TYPE_CARD_EXPIRATION,
-            self::TYPE_CARD_ZIP,
-            self::TYPE_IDENTIFICATION_TYPE,
-            self::TYPE_BANK_CITY,
-            self::TYPE_BANK_STATE,
-            self::TYPE_ID_SELFIE_COLLECTION,
-            self::TYPE_CITY,
-            self::TYPE_COUNTRY,
-            self::TYPE_IDENTIFICATION_EXPIRATION,
-            self::TYPE_ADDRESS1,
+            self::TYPE_FACE,
+            self::TYPE_DOCUMENT_FRONT,
+            self::TYPE_DOCUMENT_BACK,
         ];
     }
 
@@ -333,7 +269,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(array $data = null)
     {
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('content', $data ?? [], null);
     }
 
     /**
@@ -375,8 +311,8 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
             );
         }
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['content'] === null) {
+            $invalidProperties[] = "'content' can't be null";
         }
         return $invalidProperties;
     }
@@ -406,7 +342,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets type
      *
-     * @param string $type The type of attribute to look for
+     * @param string $type The type of image being uploaded
      *
      * @return self
      */
@@ -431,28 +367,28 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
-     * Gets value
+     * Gets content
      *
      * @return string
      */
-    public function getValue()
+    public function getContent()
     {
-        return $this->container['value'];
+        return $this->container['content'];
     }
 
     /**
-     * Sets value
+     * Sets content
      *
-     * @param string $value The value to search for
+     * @param string $content Base64 encoded image (png|jpg|jpeg). Maximum total images size is 10MB
      *
      * @return self
      */
-    public function setValue($value)
+    public function setContent($content)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($content)) {
+            throw new \InvalidArgumentException('non-nullable content cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['content'] = $content;
 
         return $this;
     }

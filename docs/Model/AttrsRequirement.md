@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **expected_value** | **string** | Written explanation of the value that the regex validation requires | [optional]
 **type** | **string** | The type of attribute | [optional]
 **input_type** | **string** | The type of input field that is suggested for this this attribute | [default to 'text']
+**last_attr_value_used** | **bool** | If set to true, it means this was the last value that was used and if no attr_set_token is provided to init payout, this value will be used by default | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

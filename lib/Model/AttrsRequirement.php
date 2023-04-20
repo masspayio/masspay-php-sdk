@@ -36,7 +36,6 @@ use \MassPayPhpSdk\ObjectSerializer;
  * AttrsRequirement Class Doc Comment
  *
  * @category Class
- * @description 
  * @package  MassPayPhpSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -67,7 +66,8 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'string',
         'expected_value' => 'string',
         'type' => 'string',
-        'input_type' => 'string'
+        'input_type' => 'string',
+        'last_attr_value_used' => 'bool'
     ];
 
     /**
@@ -86,7 +86,8 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => null,
         'expected_value' => null,
         'type' => null,
-        'input_type' => null
+        'input_type' => null,
+        'last_attr_value_used' => null
     ];
 
     /**
@@ -103,7 +104,8 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
 		'value' => false,
 		'expected_value' => false,
 		'type' => false,
-		'input_type' => false
+		'input_type' => false,
+		'last_attr_value_used' => false
     ];
 
     /**
@@ -200,7 +202,8 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'value',
         'expected_value' => 'expected_value',
         'type' => 'type',
-        'input_type' => 'input_type'
+        'input_type' => 'input_type',
+        'last_attr_value_used' => 'last_attr_value_used'
     ];
 
     /**
@@ -217,7 +220,8 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'setValue',
         'expected_value' => 'setExpectedValue',
         'type' => 'setType',
-        'input_type' => 'setInputType'
+        'input_type' => 'setInputType',
+        'last_attr_value_used' => 'setLastAttrValueUsed'
     ];
 
     /**
@@ -234,7 +238,8 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'getValue',
         'expected_value' => 'getExpectedValue',
         'type' => 'getType',
-        'input_type' => 'getInputType'
+        'input_type' => 'getInputType',
+        'last_attr_value_used' => 'getLastAttrValueUsed'
     ];
 
     /**
@@ -309,6 +314,10 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BANK_CITY = 'BankCity';
     public const TYPE_BANK_STATE = 'BankState';
     public const TYPE_ID_SELFIE_COLLECTION = 'IDSelfieCollection';
+    public const TYPE_CITY = 'City';
+    public const TYPE_COUNTRY = 'Country';
+    public const TYPE_IDENTIFICATION_EXPIRATION = 'IdentificationExpiration';
+    public const TYPE_ADDRESS1 = 'Address1';
     public const INPUT_TYPE_TEXT = 'text';
     public const INPUT_TYPE_OPTIONS = 'options';
     public const INPUT_TYPE_DATE = 'date';
@@ -352,6 +361,10 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BANK_CITY,
             self::TYPE_BANK_STATE,
             self::TYPE_ID_SELFIE_COLLECTION,
+            self::TYPE_CITY,
+            self::TYPE_COUNTRY,
+            self::TYPE_IDENTIFICATION_EXPIRATION,
+            self::TYPE_ADDRESS1,
         ];
     }
 
@@ -393,6 +406,7 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('expected_value', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('input_type', $data ?? [], 'text');
+        $this->setIfExists('last_attr_value_used', $data ?? [], null);
     }
 
     /**
@@ -723,6 +737,33 @@ class AttrsRequirement implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['input_type'] = $input_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_attr_value_used
+     *
+     * @return bool|null
+     */
+    public function getLastAttrValueUsed()
+    {
+        return $this->container['last_attr_value_used'];
+    }
+
+    /**
+     * Sets last_attr_value_used
+     *
+     * @param bool|null $last_attr_value_used If set to true, it means this was the last value that was used and if no attr_set_token is provided to init payout, this value will be used by default
+     *
+     * @return self
+     */
+    public function setLastAttrValueUsed($last_attr_value_used)
+    {
+        if (is_null($last_attr_value_used)) {
+            throw new \InvalidArgumentException('non-nullable last_attr_value_used cannot be null');
+        }
+        $this->container['last_attr_value_used'] = $last_attr_value_used;
 
         return $this;
     }

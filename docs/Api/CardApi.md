@@ -16,7 +16,7 @@ getWalletCardInfo($user_token, $wallet_token): \MassPayPhpSdk\Model\GetWalletCar
 
 Get MassPay Card Information
 
-Retrieves MassPay card information that is associated with the provided wallet token
+This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. <br> You can use this endpoint to obtain information about the MassPay card associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
 
 ### Example
 
@@ -25,13 +25,10 @@ Retrieves MassPay card information that is associated with the provided wallet t
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\CardApi(
@@ -64,7 +61,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -83,7 +80,7 @@ updateWalletCardInfo($user_token, $wallet_token, $pin, $status)
 
 Update MassPay Card Information
 
-Update card pin number or/and status
+This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. <br> You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. <br> The endpoint will then update the card information for the provided user and wallet token.
 
 ### Example
 
@@ -92,13 +89,10 @@ Update card pin number or/and status
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\CardApi(
@@ -134,7 +128,7 @@ void (empty response body)
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

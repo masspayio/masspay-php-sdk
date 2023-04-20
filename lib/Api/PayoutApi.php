@@ -450,13 +450,9 @@ class PayoutApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -489,15 +485,16 @@ class PayoutApi
      * @param  string $payout_token Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60; (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
      * @param  bool $force_status_update Attempts to get an updated status update from the payout destination (optional, default to false)
+     * @param  bool $include_payer_logo Whether to include the payer logo in base64 format. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
      *
      * @throws \MassPayPhpSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \MassPayPhpSdk\Model\PayoutTxnResp|\MassPayPhpSdk\Model\Exception
      */
-    public function getPayoutStatus($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    public function getPayoutStatus($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, $include_payer_logo = null, string $contentType = self::contentTypes['getPayoutStatus'][0])
     {
-        list($response) = $this->getPayoutStatusWithHttpInfo($user_token, $payout_token, $idempotency_key, $force_status_update, $contentType);
+        list($response) = $this->getPayoutStatusWithHttpInfo($user_token, $payout_token, $idempotency_key, $force_status_update, $include_payer_logo, $contentType);
         return $response;
     }
 
@@ -510,15 +507,16 @@ class PayoutApi
      * @param  string $payout_token Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60; (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
      * @param  bool $force_status_update Attempts to get an updated status update from the payout destination (optional, default to false)
+     * @param  bool $include_payer_logo Whether to include the payer logo in base64 format. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
      *
      * @throws \MassPayPhpSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \MassPayPhpSdk\Model\PayoutTxnResp|\MassPayPhpSdk\Model\Exception, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPayoutStatusWithHttpInfo($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    public function getPayoutStatusWithHttpInfo($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, $include_payer_logo = null, string $contentType = self::contentTypes['getPayoutStatus'][0])
     {
-        $request = $this->getPayoutStatusRequest($user_token, $payout_token, $idempotency_key, $force_status_update, $contentType);
+        $request = $this->getPayoutStatusRequest($user_token, $payout_token, $idempotency_key, $force_status_update, $include_payer_logo, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -636,14 +634,15 @@ class PayoutApi
      * @param  string $payout_token Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60; (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
      * @param  bool $force_status_update Attempts to get an updated status update from the payout destination (optional, default to false)
+     * @param  bool $include_payer_logo Whether to include the payer logo in base64 format. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPayoutStatusAsync($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    public function getPayoutStatusAsync($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, $include_payer_logo = null, string $contentType = self::contentTypes['getPayoutStatus'][0])
     {
-        return $this->getPayoutStatusAsyncWithHttpInfo($user_token, $payout_token, $idempotency_key, $force_status_update, $contentType)
+        return $this->getPayoutStatusAsyncWithHttpInfo($user_token, $payout_token, $idempotency_key, $force_status_update, $include_payer_logo, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -660,15 +659,16 @@ class PayoutApi
      * @param  string $payout_token Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60; (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
      * @param  bool $force_status_update Attempts to get an updated status update from the payout destination (optional, default to false)
+     * @param  bool $include_payer_logo Whether to include the payer logo in base64 format. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPayoutStatusAsyncWithHttpInfo($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    public function getPayoutStatusAsyncWithHttpInfo($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, $include_payer_logo = null, string $contentType = self::contentTypes['getPayoutStatus'][0])
     {
         $returnType = '\MassPayPhpSdk\Model\PayoutTxnResp';
-        $request = $this->getPayoutStatusRequest($user_token, $payout_token, $idempotency_key, $force_status_update, $contentType);
+        $request = $this->getPayoutStatusRequest($user_token, $payout_token, $idempotency_key, $force_status_update, $include_payer_logo, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -713,12 +713,13 @@ class PayoutApi
      * @param  string $payout_token Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60; (required)
      * @param  string $idempotency_key Unique key to prevent duplicate processing (optional)
      * @param  bool $force_status_update Attempts to get an updated status update from the payout destination (optional, default to false)
+     * @param  bool $include_payer_logo Whether to include the payer logo in base64 format. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPayoutStatusRequest($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    public function getPayoutStatusRequest($user_token, $payout_token, $idempotency_key = null, $force_status_update = false, $include_payer_logo = null, string $contentType = self::contentTypes['getPayoutStatus'][0])
     {
 
         // verify the required parameter 'user_token' is set
@@ -738,6 +739,7 @@ class PayoutApi
 
 
 
+
         $resourcePath = '/payout/{user_token}/{payout_token}';
         $formParams = [];
         $queryParams = [];
@@ -749,6 +751,15 @@ class PayoutApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $force_status_update,
             'force_status_update', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_payer_logo,
+            'include_payer_logo', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -810,13 +821,9 @@ class PayoutApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1132,13 +1139,9 @@ class PayoutApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1449,13 +1452,9 @@ class PayoutApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1811,13 +1810,9 @@ class PayoutApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

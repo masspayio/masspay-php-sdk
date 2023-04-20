@@ -398,13 +398,9 @@ class SpendBackApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -713,13 +709,9 @@ class SpendBackApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

@@ -4,79 +4,9 @@ All URIs are relative to https://api.masspay.io/v0.1.4, except if the operation 
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**findAttributesVelocity()**](AttributeApi.md#findAttributesVelocity) | **POST** /attribute/{user_token}/velocity | Attributes velocity check |
 | [**getAttrs()**](AttributeApi.md#getAttrs) | **GET** /attribute/{user_token}/{destination_token}/{currency} | Get user attributes for destination_token |
 | [**storeAttrs()**](AttributeApi.md#storeAttrs) | **POST** /attribute/{user_token}/{destination_token}/{currency} | Store user attributes |
 
-
-## `findAttributesVelocity()`
-
-```php
-findAttributesVelocity($user_token, $idempotency_key, $attr_velocity_request_inner): object[]
-```
-
-Attributes velocity check
-
-Identify users with matching attribute values
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new MassPayPhpSdk\Api\AttributeApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$user_token = 'user_token_example'; // string | Token representing the user to retrieve attributes for
-$idempotency_key = 'idempotency_key_example'; // string | Unique key to prevent duplicate processing
-$attr_velocity_request_inner = array(new \MassPayPhpSdk\Model\AttrVelocityRequestInner()); // \MassPayPhpSdk\Model\AttrVelocityRequestInner[]
-
-try {
-    $result = $apiInstance->findAttributesVelocity($user_token, $idempotency_key, $attr_velocity_request_inner);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AttributeApi->findAttributesVelocity: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **user_token** | **string**| Token representing the user to retrieve attributes for | |
-| **idempotency_key** | **string**| Unique key to prevent duplicate processing | [optional] |
-| **attr_velocity_request_inner** | [**\MassPayPhpSdk\Model\AttrVelocityRequestInner[]**](../Model/AttrVelocityRequestInner.md)|  | [optional] |
-
-### Return type
-
-**object[]**
-
-### Authorization
-
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
 
 ## `getAttrs()`
 
@@ -86,7 +16,7 @@ getAttrs($currency, $user_token, $destination_token, $idempotency_key): \MassPay
 
 Get user attributes for destination_token
 
-Get all the required attributes for the provided user for a prticular destination token. If any of the attributes already have a stored value, it will be returned as well.
+This **GET** endpoint is used to retrieve user attributes for a specific destination token. <br> You can use this endpoint to retrieve user attributes and provide personalized service to your users based on their preferences, demographic data, or other relevant information. <br> To use this endpoint, you need to provide the `user_token`, `destination_token`, and currency as parameters in the URL Path. <br> The endpoint will then return all the required attributes for the provided user for the specified destination token. If any of the attributes already have a stored value, it will be returned as well.
 
 ### Example
 
@@ -95,13 +25,10 @@ Get all the required attributes for the provided user for a prticular destinatio
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\AttributeApi(
@@ -138,7 +65,7 @@ try {
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -157,7 +84,7 @@ storeAttrs($currency, $user_token, $destination_token, $attr_txn, $idempotency_k
 
 Store user attributes
 
-If existing attributes are already stored, this call will override its values.
+This **POST** endpoint is used to store user attributes, allowing you to associate additional data with a user token. <br> To use this endpoint, you need to provide the `user_token`, `destination_token`, and currency as parameters in the URL Path. You also need to provide the attribute values as JSON parameters in the Request body. <br> If existing attributes are already stored for the user, this call will override their values.
 
 ### Example
 
@@ -166,13 +93,10 @@ If existing attributes are already stored, this call will override its values.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: api_key
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Configure API key authorization: AUTHORIZER_NAME
+$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
-
-// Configure Bearer authorization: AUTHORIZER_NAME
-$config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+// $config = MassPayPhpSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
 $apiInstance = new MassPayPhpSdk\Api\AttributeApi(
@@ -210,7 +134,7 @@ void (empty response body)
 
 ### Authorization
 
-[api_key](../../README.md#api_key), [AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

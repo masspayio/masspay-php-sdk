@@ -533,7 +533,7 @@ class ServicePayersInner implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets max_limit
      *
-     * @param float $max_limit The maximum amount the user can send with this service. 0 if no upper limit
+     * @param float $max_limit The maximum amount (inclusive) the user can send with this service. 0 if no upper limit
      *
      * @return self
      */
@@ -560,7 +560,7 @@ class ServicePayersInner implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets min_limit
      *
-     * @param float $min_limit The minimum amount the user can send with this service. 0 if no lower limit
+     * @param float $min_limit The minimum amount (inclusive) the user can send with this service. 0 if no lower limit
      *
      * @return self
      */

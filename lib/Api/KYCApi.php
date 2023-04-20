@@ -78,8 +78,12 @@ class KYCApi
         'getUserUserTokenKycAu10tix' => [
             'application/json',
         ],
-        'getUserUserTokenKycVeriiff' => [
+        'getUserUserTokenKycVeriff' => [
             'application/json',
+        ],
+        'uploadIdPhotos' => [
+            'application/json',
+            'application/xml',
         ],
     ];
 
@@ -414,13 +418,9 @@ class KYCApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -706,13 +706,9 @@ class KYCApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -737,38 +733,38 @@ class KYCApi
     }
 
     /**
-     * Operation getUserUserTokenKycVeriiff
+     * Operation getUserUserTokenKycVeriff
      *
      * Get a Veriff session link
      *
      * @param  string $user_token user_token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriiff'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriff'] to see the possible values for this operation
      *
      * @throws \MassPayPhpSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response
+     * @return \MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response
      */
-    public function getUserUserTokenKycVeriiff($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriiff'][0])
+    public function getUserUserTokenKycVeriff($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriff'][0])
     {
-        list($response) = $this->getUserUserTokenKycVeriiffWithHttpInfo($user_token, $contentType);
+        list($response) = $this->getUserUserTokenKycVeriffWithHttpInfo($user_token, $contentType);
         return $response;
     }
 
     /**
-     * Operation getUserUserTokenKycVeriiffWithHttpInfo
+     * Operation getUserUserTokenKycVeriffWithHttpInfo
      *
      * Get a Veriff session link
      *
      * @param  string $user_token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriiff'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriff'] to see the possible values for this operation
      *
      * @throws \MassPayPhpSdk\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserUserTokenKycVeriiffWithHttpInfo($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriiff'][0])
+    public function getUserUserTokenKycVeriffWithHttpInfo($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriff'][0])
     {
-        $request = $this->getUserUserTokenKycVeriiffRequest($user_token, $contentType);
+        $request = $this->getUserUserTokenKycVeriffRequest($user_token, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -807,23 +803,23 @@ class KYCApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response' === '\SplFileObject') {
+                    if ('\MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response' !== 'string') {
+                        if ('\MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response', []),
+                        ObjectSerializer::deserialize($content, '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response';
+            $returnType = '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -844,7 +840,7 @@ class KYCApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response',
+                        '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -855,19 +851,19 @@ class KYCApi
     }
 
     /**
-     * Operation getUserUserTokenKycVeriiffAsync
+     * Operation getUserUserTokenKycVeriffAsync
      *
      * Get a Veriff session link
      *
      * @param  string $user_token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriiff'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriff'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserUserTokenKycVeriiffAsync($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriiff'][0])
+    public function getUserUserTokenKycVeriffAsync($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriff'][0])
     {
-        return $this->getUserUserTokenKycVeriiffAsyncWithHttpInfo($user_token, $contentType)
+        return $this->getUserUserTokenKycVeriffAsyncWithHttpInfo($user_token, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -876,20 +872,20 @@ class KYCApi
     }
 
     /**
-     * Operation getUserUserTokenKycVeriiffAsyncWithHttpInfo
+     * Operation getUserUserTokenKycVeriffAsyncWithHttpInfo
      *
      * Get a Veriff session link
      *
      * @param  string $user_token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriiff'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriff'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserUserTokenKycVeriiffAsyncWithHttpInfo($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriiff'][0])
+    public function getUserUserTokenKycVeriffAsyncWithHttpInfo($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriff'][0])
     {
-        $returnType = '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriiff200Response';
-        $request = $this->getUserUserTokenKycVeriiffRequest($user_token, $contentType);
+        $returnType = '\MassPayPhpSdk\Model\GetUserUserTokenKycVeriff200Response';
+        $request = $this->getUserUserTokenKycVeriffRequest($user_token, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -928,21 +924,21 @@ class KYCApi
     }
 
     /**
-     * Create request for operation 'getUserUserTokenKycVeriiff'
+     * Create request for operation 'getUserUserTokenKycVeriff'
      *
      * @param  string $user_token (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriiff'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUserTokenKycVeriff'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUserUserTokenKycVeriiffRequest($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriiff'][0])
+    public function getUserUserTokenKycVeriffRequest($user_token, string $contentType = self::contentTypes['getUserUserTokenKycVeriff'][0])
     {
 
         // verify the required parameter 'user_token' is set
         if ($user_token === null || (is_array($user_token) && count($user_token) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_token when calling getUserUserTokenKycVeriiff'
+                'Missing the required parameter $user_token when calling getUserUserTokenKycVeriff'
             );
         }
 
@@ -998,13 +994,9 @@ class KYCApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('x-api-key');
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
-            $headers['x-api-key'] = $apiKey;
-        }
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1022,6 +1014,307 @@ class KYCApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation uploadIdPhotos
+     *
+     * Upload ID Photos
+     *
+     * @param  string $user_token user_token (required)
+     * @param  \MassPayPhpSdk\Model\IDUpload[] $id_upload id_upload (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadIdPhotos'] to see the possible values for this operation
+     *
+     * @throws \MassPayPhpSdk\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return object
+     */
+    public function uploadIdPhotos($user_token, $id_upload = null, string $contentType = self::contentTypes['uploadIdPhotos'][0])
+    {
+        list($response) = $this->uploadIdPhotosWithHttpInfo($user_token, $id_upload, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation uploadIdPhotosWithHttpInfo
+     *
+     * Upload ID Photos
+     *
+     * @param  string $user_token (required)
+     * @param  \MassPayPhpSdk\Model\IDUpload[] $id_upload (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadIdPhotos'] to see the possible values for this operation
+     *
+     * @throws \MassPayPhpSdk\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function uploadIdPhotosWithHttpInfo($user_token, $id_upload = null, string $contentType = self::contentTypes['uploadIdPhotos'][0])
+    {
+        $request = $this->uploadIdPhotosRequest($user_token, $id_upload, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('object' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('object' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'object', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'object';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation uploadIdPhotosAsync
+     *
+     * Upload ID Photos
+     *
+     * @param  string $user_token (required)
+     * @param  \MassPayPhpSdk\Model\IDUpload[] $id_upload (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadIdPhotos'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function uploadIdPhotosAsync($user_token, $id_upload = null, string $contentType = self::contentTypes['uploadIdPhotos'][0])
+    {
+        return $this->uploadIdPhotosAsyncWithHttpInfo($user_token, $id_upload, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation uploadIdPhotosAsyncWithHttpInfo
+     *
+     * Upload ID Photos
+     *
+     * @param  string $user_token (required)
+     * @param  \MassPayPhpSdk\Model\IDUpload[] $id_upload (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadIdPhotos'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function uploadIdPhotosAsyncWithHttpInfo($user_token, $id_upload = null, string $contentType = self::contentTypes['uploadIdPhotos'][0])
+    {
+        $returnType = 'object';
+        $request = $this->uploadIdPhotosRequest($user_token, $id_upload, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'uploadIdPhotos'
+     *
+     * @param  string $user_token (required)
+     * @param  \MassPayPhpSdk\Model\IDUpload[] $id_upload (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadIdPhotos'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function uploadIdPhotosRequest($user_token, $id_upload = null, string $contentType = self::contentTypes['uploadIdPhotos'][0])
+    {
+
+        // verify the required parameter 'user_token' is set
+        if ($user_token === null || (is_array($user_token) && count($user_token) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $user_token when calling uploadIdPhotos'
+            );
+        }
+
+
+
+        $resourcePath = '/user/{user_token}/kyc/id';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($user_token !== null) {
+            $resourcePath = str_replace(
+                '{' . 'user_token' . '}',
+                ObjectSerializer::toPathValue($user_token),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($id_upload)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($id_upload));
+            } else {
+                $httpBody = $id_upload;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

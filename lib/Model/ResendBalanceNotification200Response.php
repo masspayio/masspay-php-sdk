@@ -1,6 +1,6 @@
 <?php
 /**
- * AttrVelocityRequestInner
+ * ResendBalanceNotification200Response
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \MassPayPhpSdk\ObjectSerializer;
 
 /**
- * AttrVelocityRequestInner Class Doc Comment
+ * ResendBalanceNotification200Response Class Doc Comment
  *
  * @category Class
+ * @description True if sent successfully. False if there was an issue
  * @package  MassPayPhpSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ResendBalanceNotification200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AttrVelocityRequest_inner';
+    protected static $openAPIModelName = 'resendBalanceNotification_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +59,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'value' => 'string'
+        'success' => 'bool'
     ];
 
     /**
@@ -70,8 +70,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'value' => null
+        'success' => null
     ];
 
     /**
@@ -80,8 +79,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-		'value' => false
+        'success' => false
     ];
 
     /**
@@ -170,8 +168,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'value' => 'value'
+        'success' => 'success'
     ];
 
     /**
@@ -180,8 +177,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'value' => 'setValue'
+        'success' => 'setSuccess'
     ];
 
     /**
@@ -190,8 +186,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'value' => 'getValue'
+        'success' => 'getSuccess'
     ];
 
     /**
@@ -235,87 +230,6 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    public const TYPE_CARD_NUMBER = 'CardNumber';
-    public const TYPE_BANK_ACCOUNT_TYPE = 'BankAccountType';
-    public const TYPE_BANK_ACCOUNT_NUMBER = 'BankAccountNumber';
-    public const TYPE_BANK_ACCOUNT_BRANCH_NUMBER = 'BankAccountBranchNumber';
-    public const TYPE_BANK_NAME = 'BankName';
-    public const TYPE_PHONE_NUMBER = 'PhoneNumber';
-    public const TYPE_GENDER = 'Gender';
-    public const TYPE_IDENTIFICATION_NUMBER = 'IdentificationNumber';
-    public const TYPE_BILL_REFERENCE_NUMBER = 'BillReferenceNumber';
-    public const TYPE_BANK_ROUTING_NUMBER = 'BankRoutingNumber';
-    public const TYPE_BANK_ACCOUNT_NAME = 'BankAccountName';
-    public const TYPE_MAIDEN_NAME = 'MaidenName';
-    public const TYPE_SOCIAL_SECURITY = 'SocialSecurity';
-    public const TYPE_EMPLOYMENT_NAME = 'EmploymentName';
-    public const TYPE_EMPLOYMENT_ADDRESS = 'EmploymentAddress';
-    public const TYPE_EMPLOYMENT_PHONE = 'EmploymentPhone';
-    public const TYPE_EMPLOYMENT_OCCUPATION = 'EmploymentOccupation';
-    public const TYPE_EMPLOYMENT_SUPERVISOR = 'EmploymentSupervisor';
-    public const TYPE_REMITTANCE_REASON = 'RemittanceReason';
-    public const TYPE_RELATIONSHIP = 'Relationship';
-    public const TYPE_SECOND_LAST_NAME = 'SecondLastName';
-    public const TYPE_SWIFT = 'SWIFT';
-    public const TYPE_BIRTH_COUNTRY = 'BirthCountry';
-    public const TYPE_SOURCE_OF_FUNDS = 'SourceOfFunds';
-    public const TYPE_DATE_OF_BIRTH = 'DateOfBirth';
-    public const TYPE_CARD_EXPIRATION = 'CardExpiration';
-    public const TYPE_CARD_ZIP = 'CardZip';
-    public const TYPE_IDENTIFICATION_TYPE = 'IdentificationType';
-    public const TYPE_BANK_CITY = 'BankCity';
-    public const TYPE_BANK_STATE = 'BankState';
-    public const TYPE_ID_SELFIE_COLLECTION = 'IDSelfieCollection';
-    public const TYPE_CITY = 'City';
-    public const TYPE_COUNTRY = 'Country';
-    public const TYPE_IDENTIFICATION_EXPIRATION = 'IdentificationExpiration';
-    public const TYPE_ADDRESS1 = 'Address1';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_CARD_NUMBER,
-            self::TYPE_BANK_ACCOUNT_TYPE,
-            self::TYPE_BANK_ACCOUNT_NUMBER,
-            self::TYPE_BANK_ACCOUNT_BRANCH_NUMBER,
-            self::TYPE_BANK_NAME,
-            self::TYPE_PHONE_NUMBER,
-            self::TYPE_GENDER,
-            self::TYPE_IDENTIFICATION_NUMBER,
-            self::TYPE_BILL_REFERENCE_NUMBER,
-            self::TYPE_BANK_ROUTING_NUMBER,
-            self::TYPE_BANK_ACCOUNT_NAME,
-            self::TYPE_MAIDEN_NAME,
-            self::TYPE_SOCIAL_SECURITY,
-            self::TYPE_EMPLOYMENT_NAME,
-            self::TYPE_EMPLOYMENT_ADDRESS,
-            self::TYPE_EMPLOYMENT_PHONE,
-            self::TYPE_EMPLOYMENT_OCCUPATION,
-            self::TYPE_EMPLOYMENT_SUPERVISOR,
-            self::TYPE_REMITTANCE_REASON,
-            self::TYPE_RELATIONSHIP,
-            self::TYPE_SECOND_LAST_NAME,
-            self::TYPE_SWIFT,
-            self::TYPE_BIRTH_COUNTRY,
-            self::TYPE_SOURCE_OF_FUNDS,
-            self::TYPE_DATE_OF_BIRTH,
-            self::TYPE_CARD_EXPIRATION,
-            self::TYPE_CARD_ZIP,
-            self::TYPE_IDENTIFICATION_TYPE,
-            self::TYPE_BANK_CITY,
-            self::TYPE_BANK_STATE,
-            self::TYPE_ID_SELFIE_COLLECTION,
-            self::TYPE_CITY,
-            self::TYPE_COUNTRY,
-            self::TYPE_IDENTIFICATION_EXPIRATION,
-            self::TYPE_ADDRESS1,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -332,8 +246,7 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('success', $data ?? [], null);
     }
 
     /**
@@ -363,20 +276,8 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+        if ($this->container['success'] === null) {
+            $invalidProperties[] = "'success' can't be null";
         }
         return $invalidProperties;
     }
@@ -394,65 +295,28 @@ class AttrVelocityRequestInner implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets type
+     * Gets success
      *
-     * @return string
+     * @return bool
      */
-    public function getType()
+    public function getSuccess()
     {
-        return $this->container['type'];
+        return $this->container['success'];
     }
 
     /**
-     * Sets type
+     * Sets success
      *
-     * @param string $type The type of attribute to look for
+     * @param bool $success True if notifcation was sent succesfully. False otherwise
      *
      * @return self
      */
-    public function setType($type)
+    public function setSuccess($success)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($success)) {
+            throw new \InvalidArgumentException('non-nullable success cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value The value to search for
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
-        $this->container['value'] = $value;
+        $this->container['success'] = $success;
 
         return $this;
     }

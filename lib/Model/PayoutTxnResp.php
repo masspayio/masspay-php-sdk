@@ -78,7 +78,9 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
         'delivery_type' => 'string',
         'country_code' => 'string',
         'metadata' => 'object',
-        'estimated_availability' => '\DateTime'
+        'estimated_availability' => '\DateTime',
+        'status_reason' => 'string',
+        'attrs' => 'object'
     ];
 
     /**
@@ -108,7 +110,9 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
         'delivery_type' => null,
         'country_code' => null,
         'metadata' => null,
-        'estimated_availability' => 'date-time'
+        'estimated_availability' => 'date-time',
+        'status_reason' => null,
+        'attrs' => null
     ];
 
     /**
@@ -136,7 +140,9 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
 		'delivery_type' => false,
 		'country_code' => false,
 		'metadata' => false,
-		'estimated_availability' => false
+		'estimated_availability' => false,
+		'status_reason' => false,
+		'attrs' => false
     ];
 
     /**
@@ -244,7 +250,9 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
         'delivery_type' => 'delivery_type',
         'country_code' => 'country_code',
         'metadata' => 'metadata',
-        'estimated_availability' => 'estimated_availability'
+        'estimated_availability' => 'estimated_availability',
+        'status_reason' => 'status_reason',
+        'attrs' => 'attrs'
     ];
 
     /**
@@ -272,7 +280,9 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
         'delivery_type' => 'setDeliveryType',
         'country_code' => 'setCountryCode',
         'metadata' => 'setMetadata',
-        'estimated_availability' => 'setEstimatedAvailability'
+        'estimated_availability' => 'setEstimatedAvailability',
+        'status_reason' => 'setStatusReason',
+        'attrs' => 'setAttrs'
     ];
 
     /**
@@ -300,7 +310,9 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
         'delivery_type' => 'getDeliveryType',
         'country_code' => 'getCountryCode',
         'metadata' => 'getMetadata',
-        'estimated_availability' => 'getEstimatedAvailability'
+        'estimated_availability' => 'getEstimatedAvailability',
+        'status_reason' => 'getStatusReason',
+        'attrs' => 'getAttrs'
     ];
 
     /**
@@ -434,6 +446,8 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('country_code', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('estimated_availability', $data ?? [], null);
+        $this->setIfExists('status_reason', $data ?? [], null);
+        $this->setIfExists('attrs', $data ?? [], null);
     }
 
     /**
@@ -518,6 +532,12 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['payer_name'] === null) {
+            $invalidProperties[] = "'payer_name' can't be null";
+        }
+        if ($this->container['delivery_type'] === null) {
+            $invalidProperties[] = "'delivery_type' can't be null";
+        }
         $allowedValues = $this->getDeliveryTypeAllowableValues();
         if (!is_null($this->container['delivery_type']) && !in_array($this->container['delivery_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -527,11 +547,14 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if (!is_null($this->container['country_code']) && (mb_strlen($this->container['country_code']) > 3)) {
+        if ($this->container['country_code'] === null) {
+            $invalidProperties[] = "'country_code' can't be null";
+        }
+        if ((mb_strlen($this->container['country_code']) > 3)) {
             $invalidProperties[] = "invalid value for 'country_code', the character length must be smaller than or equal to 3.";
         }
 
-        if (!is_null($this->container['country_code']) && (mb_strlen($this->container['country_code']) < 3)) {
+        if ((mb_strlen($this->container['country_code']) < 3)) {
             $invalidProperties[] = "invalid value for 'country_code', the character length must be bigger than or equal to 3.";
         }
 
@@ -975,7 +998,7 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets payer_name
      *
-     * @return string|null
+     * @return string
      */
     public function getPayerName()
     {
@@ -985,7 +1008,7 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets payer_name
      *
-     * @param string|null $payer_name Name of payer
+     * @param string $payer_name Name of payer
      *
      * @return self
      */
@@ -1002,7 +1025,7 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets delivery_type
      *
-     * @return string|null
+     * @return string
      */
     public function getDeliveryType()
     {
@@ -1012,7 +1035,7 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_type
      *
-     * @param string|null $delivery_type delivery_type
+     * @param string $delivery_type The type of delivery
      *
      * @return self
      */
@@ -1039,7 +1062,7 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets country_code
      *
-     * @return string|null
+     * @return string
      */
     public function getCountryCode()
     {
@@ -1049,7 +1072,7 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country_code
      *
-     * @param string|null $country_code Country code [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+     * @param string $country_code Country code [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
      *
      * @return self
      */
@@ -1120,6 +1143,60 @@ class PayoutTxnResp implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable estimated_availability cannot be null');
         }
         $this->container['estimated_availability'] = $estimated_availability;
+
+        return $this;
+    }
+
+    /**
+     * Gets status_reason
+     *
+     * @return string|null
+     */
+    public function getStatusReason()
+    {
+        return $this->container['status_reason'];
+    }
+
+    /**
+     * Sets status_reason
+     *
+     * @param string|null $status_reason Optional. Contains the reason for the status change. Most commonly used for CANCELLED status with the reason for cancellation
+     *
+     * @return self
+     */
+    public function setStatusReason($status_reason)
+    {
+        if (is_null($status_reason)) {
+            throw new \InvalidArgumentException('non-nullable status_reason cannot be null');
+        }
+        $this->container['status_reason'] = $status_reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets attrs
+     *
+     * @return object|null
+     */
+    public function getAttrs()
+    {
+        return $this->container['attrs'];
+    }
+
+    /**
+     * Sets attrs
+     *
+     * @param object|null $attrs The relevant attributes that were used to fulfill this payout
+     *
+     * @return self
+     */
+    public function setAttrs($attrs)
+    {
+        if (is_null($attrs)) {
+            throw new \InvalidArgumentException('non-nullable attrs cannot be null');
+        }
+        $this->container['attrs'] = $attrs;
 
         return $this;
     }
