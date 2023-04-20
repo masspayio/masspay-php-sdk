@@ -1,4 +1,4 @@
-<img src="./docs/logo.png" width="200" />
+<img src="./docs/logo.webp" width="200" />
 
 ## masspay-php-sdk ![composer](https://img.shields.io/github/v/release/masspayio/masspay-php-sdk) ![php](https://img.shields.io/badge/php->=%207.4-blue)
 
