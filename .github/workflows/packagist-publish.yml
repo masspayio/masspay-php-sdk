@@ -14,5 +14,5 @@ jobs:
       - name: Release Package
         uses: mnavarrocarter/packagist-update@v1.0
         with:
-          username: $
-          api_token: $
+          username: ${{ secrets.PACKAGIST_USERNAME }}
+          api_token: ${{ secrets.PACKAGIST_TOKEN }}
