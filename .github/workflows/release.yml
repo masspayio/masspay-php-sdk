@@ -1,0 +1,23 @@
+name: Release
+on:
+  push:
+    branches:
+      - main # set your default branch
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Release by DX Heroes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dxheroes/gh-action-auto-release@v1
+        with:
+          release-type: php
+          package-name: masspay-php-sdk
+        env:
+          PACKAGIST_USERNAME: ${{ env.PACKAGIST_USERNAME }}
+          PACKAGIST_TOKEN: ${{ env.PACKAGIST_TOKEN }}
