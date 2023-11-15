@@ -19,5 +19,5 @@ jobs:
           release-type: php
           package-name: masspay-php-sdk
         env:
-          PACKAGIST_USERNAME: ${{ env.PACKAGIST_USERNAME }}
-          PACKAGIST_TOKEN: ${{ env.PACKAGIST_TOKEN }}
+          PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
+          PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
