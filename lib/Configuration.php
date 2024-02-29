@@ -59,7 +59,7 @@ class Configuration
      *
      * @var string[]
      */
-    protected $apiKeyPrefixes = [];
+    protected $apiKeyPrefixes = ['Authorization' => 'Bearer'];
 
     /**
      * Access token for OAuth/Bearer authentication

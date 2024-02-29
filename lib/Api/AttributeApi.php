@@ -514,7 +514,7 @@ class AttributeApi
      */
     public function storeAttrs($currency, $user_token, $destination_token, $attr_txn, $idempotency_key = null, string $contentType = self::contentTypes['storeAttrs'][0])
     {
-        $this->storeAttrsWithHttpInfo($currency, $user_token, $destination_token, $attr_txn, $idempotency_key, $contentType);
+        return $this->storeAttrsWithHttpInfo($currency, $user_token, $destination_token, $attr_txn, $idempotency_key, $contentType);
     }
 
     /**
@@ -572,7 +572,7 @@ class AttributeApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            return [json_decode((string)$response->getBody()), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -638,7 +638,7 @@ class AttributeApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    return [json_decode((string)$response->getBody()), $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
