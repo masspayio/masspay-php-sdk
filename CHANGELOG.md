@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0](https://github.com/masspayio/masspay-php-sdk/compare/v1.0.0...v1.0.0) (2024-03-01)
+
+
+### Miscellaneous Chores
+
+* **release:** 1.0.0 ([1831dca](https://github.com/masspayio/masspay-php-sdk/commit/1831dca791c0ca0ab3fa6738ee9ff7c96cda95ac))
+
 ## 1.0.0 (2023-11-15)
 
 
