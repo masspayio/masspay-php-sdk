@@ -373,14 +373,14 @@ class AttributeApi
                 'Missing the required parameter $currency when calling getAttrs'
             );
         }
-        if (strlen($currency) > 3) {
-            throw new \InvalidArgumentException('invalid length for "$currency" when calling AttributeApi.getAttrs, must be smaller than or equal to 3.');
+        if (strlen($currency) > 4) {
+            throw new \InvalidArgumentException('invalid length for "$currency" when calling AttributeApi.getAttrs, must be smaller than or equal to 4.');
         }
         if (strlen($currency) < 3) {
             throw new \InvalidArgumentException('invalid length for "$currency" when calling AttributeApi.getAttrs, must be bigger than or equal to 3.');
         }
-        if (!preg_match("/^[A-Z]{3}$/", $currency)) {
-            throw new \InvalidArgumentException("invalid value for \"currency\" when calling AttributeApi.getAttrs, must conform to the pattern /^[A-Z]{3}$/.");
+        if (!preg_match("/^[A-Z]{3,4}$/", $currency)) {
+            throw new \InvalidArgumentException("invalid value for \"currency\" when calling AttributeApi.getAttrs, must conform to the pattern /^[A-Z]{3,4}$/.");
         }
         
         // verify the required parameter 'user_token' is set
@@ -679,14 +679,14 @@ class AttributeApi
                 'Missing the required parameter $currency when calling storeAttrs'
             );
         }
-        if (strlen($currency) > 3) {
-            throw new \InvalidArgumentException('invalid length for "$currency" when calling AttributeApi.storeAttrs, must be smaller than or equal to 3.');
+        if (strlen($currency) > 4) {
+            throw new \InvalidArgumentException('invalid length for "$currency" when calling AttributeApi.storeAttrs, must be smaller than or equal to 4.');
         }
         if (strlen($currency) < 3) {
             throw new \InvalidArgumentException('invalid length for "$currency" when calling AttributeApi.storeAttrs, must be bigger than or equal to 3.');
         }
-        if (!preg_match("/^[A-Z]{3}$/", $currency)) {
-            throw new \InvalidArgumentException("invalid value for \"currency\" when calling AttributeApi.storeAttrs, must conform to the pattern /^[A-Z]{3}$/.");
+        if (!preg_match("/^[A-Z]{3,4}$/", $currency)) {
+            throw new \InvalidArgumentException("invalid value for \"currency\" when calling AttributeApi.storeAttrs, must conform to the pattern /^[A-Z]{3,4}$/.");
         }
         
         // verify the required parameter 'user_token' is set
