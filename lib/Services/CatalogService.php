@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -27,7 +27,7 @@ class CatalogService extends AbstractService
     */
     public function getCountryList()
     {
-        $url = "/country/list";
+        $url = "/payout/country/list";
         $parameters = new RequestParameters();
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);
@@ -49,7 +49,7 @@ class CatalogService extends AbstractService
     */
     public function getCountryServices(string $countryCode, ?int $limit = null, ?string $walletToken = null, ?string $userToken = null, ?string $sourceCurrency = null, ?string $payerName = null, ?string $destinationCurrency = null, ?string $idempotencyKey = null, ?string $amount = "200", ?bool $includePayerLogos = null)
     {
-        $url = "/country/{$countryCode}";
+        $url = "/payout/country/{$countryCode}";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($amount)) {
@@ -99,7 +99,7 @@ class CatalogService extends AbstractService
     */
     public function getCheapestCountryServices(string $countryCode, ?int $limit = null, ?string $walletToken = null, ?string $userToken = null, ?string $sourceCurrency = null, ?string $payerName = null, ?string $destinationCurrency = null, ?string $idempotencyKey = null, ?string $amount = "200", ?bool $includePayerLogos = null)
     {
-        $url = "/country/{$countryCode}/cheapest";
+        $url = "/payout/country/{$countryCode}/cheapest";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($amount)) {
@@ -141,7 +141,7 @@ class CatalogService extends AbstractService
     */
     public function getDestinationTokenAlternatives(string $destinationToken, ?string $idempotencyKey = null)
     {
-        $url = "/service/{$destinationToken}/alternatives";
+        $url = "/payout/service/{$destinationToken}/alternatives";
         $parameters = new RequestParameters();
         if (isset($idempotencyKey)) {
             $parameters->headers['Idempotency-Key'] = $idempotencyKey;
@@ -159,7 +159,7 @@ class CatalogService extends AbstractService
     */
     public function getDestinationToken(string $destinationToken, ?bool $includePayerLogos = null, ?string $idempotencyKey = null)
     {
-        $url = "/service/{$destinationToken}";
+        $url = "/payout/service/{$destinationToken}";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($includePayerLogos)) {
@@ -179,7 +179,7 @@ class CatalogService extends AbstractService
     */
     public function getUserAgreement(int $id)
     {
-        $url = "/user-agreements";
+        $url = "/payout/user-agreements";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         $parameters->query['id'] = $id;
@@ -193,7 +193,7 @@ class CatalogService extends AbstractService
     */
     public function getUserAgreementsNames()
     {
-        $url = "/user-agreements";
+        $url = "/payout/user-agreements";
         $parameters = new RequestParameters();
 
         return $this->options($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);

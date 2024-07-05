@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -28,11 +28,11 @@ class KycService extends AbstractService
      * @param string $userToken Token representing the user to retrieve attributes for
      * @param string $idempotencyKey Unique key to prevent duplicate processing
      * @param AttrVelocityRequest $requestBody
-     * @returns array[]Succesfully created.
+     * @returns string[]Succesfully created.
     */
     public function findAttributesVelocity(string $userToken, ?string $idempotencyKey = null, ?AttrVelocityRequest $requestBody = null)
     {
-        $url = "/attribute/{$userToken}/velocity";
+        $url = "/payout/attribute/{$userToken}/velocity";
         $parameters = new RequestParameters();
         if (!is_null($requestBody) && !empty($requestBody)) {
             $parameters->setBody($requestBody->toArray());
@@ -46,12 +46,12 @@ class KycService extends AbstractService
     /**
        * Get an Au10tix session link
        * This **GET** endpoint is used to obtain a link to an Au10tix session for the user with the provided user token. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The endpoint will then generate a session link that you can use to initiate an identity verification process for the user through the Au10tix platform. <br> The response will contain the session link as a URL in a JSON format.
-     * @param string $userToken
+     * @param string $userToken Token representing the user to retrieve attributes for
      * @returns arraySuccesful operation.
     */
     public function getUserUserTokenKycAu10Tix(string $userToken)
     {
-        $url = "/user/{$userToken}/kyc/au10tix";
+        $url = "/payout/user/{$userToken}/kyc/au10tix";
         $parameters = new RequestParameters();
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);
@@ -59,13 +59,13 @@ class KycService extends AbstractService
     /**
        * Upload ID photos
        * Upload IDs for the provided user. This is an optional endpoint if the images are captured through means other than the link that is generated in the attributes.
-     * @param string $userToken
+     * @param string $userToken Token representing the user to retrieve attributes for
      * @param IDUpload $requestBody
      * @returns arrayOK
     */
     public function uploadIdPhotos(string $userToken, ?IDUpload $requestBody = null)
     {
-        $url = "/user/{$userToken}/kyc/id";
+        $url = "/payout/user/{$userToken}/kyc/id";
         $parameters = new RequestParameters();
         if (!is_null($requestBody) && !empty($requestBody)) {
             $parameters->setBody($requestBody->toArray());
@@ -76,12 +76,12 @@ class KycService extends AbstractService
     /**
        * Get all KYC sessions
        * This **GET** endpoint is used to obtain all previous KYC sessions for the user with the provided user token. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path.
-     * @param string $userToken
+     * @param string $userToken Token representing the user to retrieve attributes for
      * @returns KYCSessionSuccesful operation.
     */
     public function getUserUserTokenKycAttempts(string $userToken)
     {
-        $url = "/user/{$userToken}/kyc/id";
+        $url = "/payout/user/{$userToken}/kyc/id";
         $parameters = new RequestParameters();
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);
@@ -89,12 +89,12 @@ class KycService extends AbstractService
     /**
        * Get a Veriff session link
        * This **GET** endpoint is used to obtain a link to a Veriff session for the user with the provided user token. <br> The endpoint will then generate a session link that you can use to initiate an identity verification process for the user through the Veriff platform. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The response will contain the session link as a URL in a JSON format.
-     * @param string $userToken
+     * @param string $userToken Token representing the user to retrieve attributes for
      * @returns arraySuccesful operation.
     */
     public function getUserUserTokenKycVeriff(string $userToken)
     {
-        $url = "/user/{$userToken}/kyc/veriff";
+        $url = "/payout/user/{$userToken}/kyc/veriff";
         $parameters = new RequestParameters();
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);

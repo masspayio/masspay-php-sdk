@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -29,7 +29,7 @@ class CardService extends AbstractService
     */
     public function getWalletCardInfo(string $userToken, string $walletToken)
     {
-        $url = "/wallet/{$userToken}/{$walletToken}/card";
+        $url = "/payout/wallet/{$userToken}/{$walletToken}/card";
         $parameters = new RequestParameters();
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);
@@ -45,7 +45,7 @@ class CardService extends AbstractService
     */
     public function updateWalletCardInfo(string $userToken, string $walletToken, ?string $pin = null, ?updateWalletCardInfoStatus $status = null)
     {
-        $url = "/wallet/{$userToken}/{$walletToken}/card";
+        $url = "/payout/wallet/{$userToken}/{$walletToken}/card";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($pin)) {

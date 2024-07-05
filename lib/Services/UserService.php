@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -30,7 +30,7 @@ class UserService extends AbstractService
     */
     public function createUser(User $requestBody)
     {
-        $url = "/user";
+        $url = "/payout/user";
         $parameters = new RequestParameters();
         if (!is_null($requestBody) && !empty($requestBody)) {
             $parameters->setBody($requestBody->toArray());
@@ -47,7 +47,7 @@ class UserService extends AbstractService
     */
     public function getUserByToken(string $userToken, ?string $idempotencyKey = null)
     {
-        $url = "/user/{$userToken}";
+        $url = "/payout/user/{$userToken}";
         $parameters = new RequestParameters();
         if (isset($idempotencyKey)) {
             $parameters->headers['Idempotency-Key'] = $idempotencyKey;
@@ -65,7 +65,7 @@ class UserService extends AbstractService
     */
     public function updateUser(string $userToken, UpdateUser $requestBody, ?string $idempotencyKey = null)
     {
-        $url = "/user/{$userToken}";
+        $url = "/payout/user/{$userToken}";
         $parameters = new RequestParameters();
         if (!is_null($requestBody) && !empty($requestBody)) {
             $parameters->setBody($requestBody->toArray());
@@ -87,7 +87,7 @@ class UserService extends AbstractService
     */
     public function userLookup(string $email, string $firstName, string $internalUserId, ?string $idempotencyKey = null)
     {
-        $url = "/user/lookup";
+        $url = "/payout/user/lookup";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         $parameters->query['email'] = $email;
@@ -110,12 +110,12 @@ class UserService extends AbstractService
      * @param string $idempotencyKey Unique key to prevent duplicate processing
      * @param int $numberOfRecords Number of records to return. Defaults to 10 if no value is provided
      * @param int $page Page number
-     * @param bool $showAllClients Wether to show transactions from all clients
+     * @param bool $showAllClients Whether to show transactions from all clients
      * @returns TxnHistoryRespSuccesful operation.
     */
     public function getUserHistory(string $userToken, ?string $startDate = null, ?string $endDate = null, ?getUserHistoryType $type = null, ?string $walletToken = null, ?string $idempotencyKey = null, ?int $numberOfRecords = 10, ?int $page = 1, ?bool $showAllClients = null)
     {
-        $url = "/user/{$userToken}/history";
+        $url = "/payout/user/{$userToken}/history";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($numberOfRecords)) {
@@ -155,12 +155,12 @@ class UserService extends AbstractService
      * @param string $idempotencyKey Unique key to prevent duplicate processing
      * @param int $numberOfRecords Number of records to return. Defaults to 10 if no value is provided
      * @param int $page Page number
-     * @param bool $showAllClients Wether to show transactions from all clients
+     * @param bool $showAllClients Whether to show transactions from all clients
      * @returns TxnHistoryRespSuccesful operation.
     */
     public function getAllUsersHistory(?string $startDate = null, ?string $endDate = null, ?getAllUsersHistoryType $type = null, ?string $walletToken = null, ?string $idempotencyKey = null, ?int $numberOfRecords = 10, ?int $page = 1, ?bool $showAllClients = null)
     {
-        $url = "/user/history";
+        $url = "/payout/user/history";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($numberOfRecords)) {

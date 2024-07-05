@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -30,6 +30,7 @@ use MasspaySdk\Services\KycService;
 use MasspaySdk\Services\LoadService;
 use MasspaySdk\Services\PayoutService;
 use MasspaySdk\Services\SpendBackService;
+use MasspaySdk\Services\SubaccountService;
 use MasspaySdk\Services\TaxService;
 use MasspaySdk\Services\UserService;
 use MasspaySdk\Services\WalletService;
@@ -65,7 +66,7 @@ class Client
         $this->requestHandler->addPlugin(
             new HeaderDefaultsPlugin(
                 [
-                    'User-Agent' => 'MasspaySdk/2.0.0',
+                    'User-Agent' => 'MasspaySdk/2.1.0',
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ]
@@ -111,6 +112,11 @@ class Client
     public function spendback(): SpendBackService
     {
         return new SpendBackService($this);
+    }
+
+    public function subaccount(): SubaccountService
+    {
+        return new SubaccountService($this);
     }
 
     public function tax(): TaxService

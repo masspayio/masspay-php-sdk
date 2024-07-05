@@ -1,98 +1,55 @@
-/.openapi-generator
-git_push.sh
-.travis.yml
-.gitlab-ci.yml
-
-# ref: https://github.com/github/gitignore/blob/master/Composer.gitignore
-
-composer.phar
+# Composer dependencies
 /vendor/
-phpunit.xml
+composer.lock
 
-# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+# Composer binary
+/composer.phar
 
-# php-cs-fixer cache
-.php_cs.cache
-.php-cs-fixer.cache
-.php-cs-fixer.dist.php
-
-# PHPUnit cache
-.phpunit.result.cache
-
-
-
-# Created by https://www.gitignore.io/api/osx,linux,windows
-# Edit at https://www.gitignore.io/?templates=osx,linux,windows
-
-### Linux ###
-*~
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
-
-### OSX ###
-# General
+# Mac OS X specific files
 .DS_Store
-.AppleDouble
-.LSOverride
 
-# Icon must end with two \r
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-### Windows ###
-# Windows thumbnail cache files
+# Windows specific files
 Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
 
-# Dump file
-*.stackdump
+# Linux specific files
+.*.swp
+.*.swo
 
-# Folder config file
-[Dd]esktop.ini
+# IDE specific files
+/.idea/
+/.vscode/
+*.sublime-workspace
+*.sublime-project
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Logs and caches
+/logs/
+/cache/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
 
-# Windows shortcuts
-*.lnk
+# Exported databases
+*.sql
+*.sqlite
 
-# End of https://www.gitignore.io/api/osx,linux,windows
+# Environment files
+/.env
+/.env.local
+/.env.*.local
+
+# Node modules (if using Node.js in your project)
+/node_modules/
+
+# Build artifacts
+/build/
+/dist/
+
+# Custom directories (add any specific directories or files relevant to your project)
+/custom_folder/
+custom_file.txt
+
+# Files containing sensitive information or local configuration
+/config/*.local.php
+
+.phpactor.json
