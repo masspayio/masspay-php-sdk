@@ -66,7 +66,7 @@ class Client
         $this->requestHandler->addPlugin(
             new HeaderDefaultsPlugin(
                 [
-                    'User-Agent' => 'MasspaySdk/2.1.0',
+                    'User-Agent' => 'MasspaySdk/3.0.0',
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ]

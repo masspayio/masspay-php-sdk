@@ -5,7 +5,7 @@
 
 <div align='center' class='text-center'>
   <a aria-label='Version' href='#'>
-    <img alt='' src='https://img.shields.io/badge/version-2.1.0-blue' />
+    <img alt='' src='https://img.shields.io/badge/version-3.0.0-blue' />
   </a>
   <a aria-label='License' href='https://opensource.org/licenses/MIT'>
     <img alt='' src='https://img.shields.io/badge/License-MIT-blue.svg' />
@@ -24,7 +24,7 @@ Repository badges to consider: (https://github.com/aleen42/badges)
 Welcome to our MasspaySdk. We are committed to providing you with the best SDK services experience possible. Please use our step-by-step instructions to become familiar with how to use our SDK.
 
 - Current API version: 1.0.0
-- Current package version: 2.1.0
+- Current package version: 3.0.0
 
 ## Table of Contents
 
@@ -59,7 +59,7 @@ To install via [Composer](https://getcomposer.org/), add the following to `compo
     }
   ],
   "require": {
-    "masspayio/masspay-php-sdk": "^2.1.0"
+    "masspayio/masspay-php-sdk": "^3.0.0"
   }
 }
 ```
