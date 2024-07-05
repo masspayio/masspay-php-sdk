@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -29,7 +29,7 @@ class TaxService extends AbstractService
     */
     public function getTaxUsers(?int $amountThreshold = null, ?int $taxYear = null)
     {
-        $url = "/tax";
+        $url = "/payout/tax";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($amountThreshold)) {
@@ -45,12 +45,17 @@ class TaxService extends AbstractService
        * Get link for tax interview
        * This **GET**  endpoint is used to get a W8/W9 tax interview link for a specific user identified by their `user_token`. The user should be directed to link that is obtained by this endpoint.<br>To use this endpoint, replace `user_token` in the URL path with the actual user token of the user whose tax information you want to collect.
      * @param string $userToken
+     * @param string $returnUrl If specified, the user will be redirected to this URL upon submission of the interview process
      * @returns arrayOK
     */
-    public function getTaxInterviewLink(string $userToken)
+    public function getTaxInterviewLink(string $userToken, ?string $returnUrl = null)
     {
-        $url = "/{$userToken}/tax";
+        $url = "/payout/{$userToken}/tax";
         $parameters = new RequestParameters();
+        $parameters->setQuery([]);
+        if (isset($returnUrl)) {
+            $parameters->query['return_url'] = $returnUrl;
+        }
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);
     }

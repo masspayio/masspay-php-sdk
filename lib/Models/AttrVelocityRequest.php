@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -49,7 +49,6 @@ enum attrVelocityRequestType: string {
     case IDENTIFICATION_EXPIRATION = "IdentificationExpiration";
     case ADDRESS1 = "Address1";
     case IFRAME_PAYMENT_COLLECTION = "IFramePaymentCollection";
-    case POSTAL_CODE = "PostalCode";
 }
 class AttrVelocityRequest
 {

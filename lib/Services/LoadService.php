@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -23,7 +23,7 @@ class LoadService extends AbstractService
 {
     /**
        * Resend balance notification
-       * This **POST** endpoint is used to resend a balance notification to a user with the specified `user_token`. The balance notification informs the user about the current balance in their account. <br> To use this endpoint, you need to provide the required parameter `user_token` in the URL Path. Additionally, you have the option to include an optional parameter `wallet_token` in the query parameters. The `wallet_token` can be used to specify a particular wallet associated with the user, if applicable. <br> Upon a successful request, the API will return a boolean response indicating the success of the balance notification resend operation.
+       * This **PUT** endpoint is used to resend a balance notification to a user with the specified `user_token`. The balance notification informs the user about the current balance in their account. <br> To use this endpoint, you need to provide the required parameter `user_token` in the URL Path. Additionally, you have the option to include an optional parameter `wallet_token` in the query parameters. The `wallet_token` can be used to specify a particular wallet associated with the user, if applicable. <br> Upon a successful request, the API will return a boolean response indicating the success of the balance notification resend operation.
      * @param string $userToken Token representing the user who owns the wallet
      * @param string $walletToken Optional wallet token. If none is provided, select the first wallet available
      * @param string $idempotencyKey Unique key to prevent duplicate processing
@@ -31,7 +31,7 @@ class LoadService extends AbstractService
     */
     public function resendBalanceNotification(string $userToken, ?string $walletToken = null, ?string $idempotencyKey = null)
     {
-        $url = "/wallet/{$userToken}";
+        $url = "/payout/wallet/{$userToken}";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         if (isset($walletToken)) {
@@ -53,7 +53,7 @@ class LoadService extends AbstractService
     */
     public function loadUser(string $userToken, LoadTxn $requestBody, ?string $idempotencyKey = null)
     {
-        $url = "/load/{$userToken}";
+        $url = "/payout/load/{$userToken}";
         $parameters = new RequestParameters();
         if (!is_null($requestBody) && !empty($requestBody)) {
             $parameters->setBody($requestBody->toArray());
@@ -73,7 +73,7 @@ class LoadService extends AbstractService
     */
     public function getUserLoadsByToken(string $userToken, ?string $idempotencyKey = null)
     {
-        $url = "/load/{$userToken}";
+        $url = "/payout/load/{$userToken}";
         $parameters = new RequestParameters();
         if (isset($idempotencyKey)) {
             $parameters->headers['Idempotency-Key'] = $idempotencyKey;
@@ -91,7 +91,7 @@ class LoadService extends AbstractService
     */
     public function resendLoadNotification(string $userToken, string $loadToken, ?string $idempotencyKey = null)
     {
-        $url = "/load/{$userToken}";
+        $url = "/payout/load/{$userToken}";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         $parameters->query['load_token'] = $loadToken;
@@ -111,7 +111,7 @@ class LoadService extends AbstractService
     */
     public function cancelUserLoad(string $userToken, string $loadToken, ?string $idempotencyKey = null)
     {
-        $url = "/load/{$userToken}";
+        $url = "/payout/load/{$userToken}";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         $parameters->query['load_token'] = $loadToken;

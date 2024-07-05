@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -27,7 +27,7 @@ class AccountService extends AbstractService
     */
     public function getAccountBalance()
     {
-        $url = "/account/balance";
+        $url = "/payout/account/balance";
         $parameters = new RequestParameters();
 
         return $this->get($parameters->getFormattedQuery($url), $parameters->getRequestBody(), $parameters->headers);
@@ -41,7 +41,7 @@ class AccountService extends AbstractService
     */
     public function getAccountStatement(string $startDate, string $endingDate)
     {
-        $url = "/account/statement";
+        $url = "/payout/account/statement";
         $parameters = new RequestParameters();
         $parameters->setQuery([]);
         $parameters->query['start_date'] = $startDate;

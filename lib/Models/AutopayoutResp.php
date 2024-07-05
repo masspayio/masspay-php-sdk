@@ -2,21 +2,21 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
  * Do not edit the file manually.
  */
 namespace MasspaySdk\Models;
-class AutopayResp
+class AutopayoutResp
 {
     /**
-     * @var string $token Autopay token
+     * @var string $token Autopayout token
      */
     public string $token;
     /**
-     * @var string $destinationToken The destination_token to autopay (send payout to)
+     * @var string $destinationToken The destination_token to autopayout (send payout to)
      */
     public string $destinationToken;
     /**
@@ -36,7 +36,7 @@ class AutopayResp
     }
     public static function fromArray(array $data): self
     {
-        return new AutopayResp($data['token'], $data['destination_token'], $data['percentage'], $data['attr_set_token']);
+        return new AutopayoutResp($data['token'], $data['destination_token'], $data['percentage'], $data['attr_set_token']);
     }
     public function toArray(): array
     {

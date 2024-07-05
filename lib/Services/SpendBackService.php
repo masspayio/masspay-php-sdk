@@ -2,7 +2,7 @@
 /**
  * MassPay API
  *
- * The version of the OpenAPI document: 0.1.4
+ * The version of the OpenAPI document: 1.0.0
  * Contact: info@masspay.io
  *
  * NOTE: This file is auto generated.
@@ -30,7 +30,7 @@ class SpendBackService extends AbstractService
     */
     public function getUserSpendbacksByToken(string $userToken, ?string $idempotencyKey = null)
     {
-        $url = "/spendback/{$userToken}";
+        $url = "/payout/spendback/{$userToken}";
         $parameters = new RequestParameters();
         if (isset($idempotencyKey)) {
             $parameters->headers['Idempotency-Key'] = $idempotencyKey;
@@ -48,7 +48,7 @@ class SpendBackService extends AbstractService
     */
     public function initiateSpendback(string $userToken, ?string $idempotencyKey = null, ?SpendBackTxn $requestBody = null)
     {
-        $url = "/spendback/{$userToken}";
+        $url = "/payout/spendback/{$userToken}";
         $parameters = new RequestParameters();
         if (!is_null($requestBody) && !empty($requestBody)) {
             $parameters->setBody($requestBody->toArray());
