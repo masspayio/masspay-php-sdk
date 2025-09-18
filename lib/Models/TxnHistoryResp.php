@@ -65,7 +65,7 @@ class TxnHistoryResp
     /**
      * @var int $sourceAmount Source amount
      */
-    public int $sourceAmount;
+    public float $sourceAmount;
     /**
      * @var string $sourceCurrencyCode The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided
      */
@@ -73,7 +73,7 @@ class TxnHistoryResp
     /**
      * @var int $destinationAmount The amount that was received in `destination_currency_code`
      */
-    public int $destinationAmount;
+    public float $destinationAmount;
     /**
      * @var string $destinationCurrencyCode The currency of the funds received. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format
      */
@@ -81,7 +81,7 @@ class TxnHistoryResp
     /**
      * @var int $fee Fee of the transaction
      */
-    public int $fee;
+    public float $fee;
     /**
      * @var txnHistoryRespStatus $status Status of the transaction
      */
@@ -126,7 +126,7 @@ class TxnHistoryResp
      * @var string $userToken User token representing the user this transaction belongs to
      */
     public ?string $userToken;
-    public function __construct(string $token, txnHistoryRespType $type, string $timeOfTxn, int $sourceAmount, string $sourceCurrencyCode, int $destinationAmount, string $destinationCurrencyCode, int $fee, txnHistoryRespStatus $status, string $destinationToken, ?string $notes = null, ?string $payerName = null, ?string $pickupCode = null, ?string $sourceToken = null, ?txnHistoryRespDeliveryType $deliveryType = null, ?string $clientTransferId = null, ?string $statusReason = null, ?int $clientId = null, ?string $userToken = null)
+    public function __construct(string $token, txnHistoryRespType $type, string $timeOfTxn, float $sourceAmount, string $sourceCurrencyCode, float $destinationAmount, string $destinationCurrencyCode, float $fee, txnHistoryRespStatus $status, string $destinationToken, ?string $notes = null, ?string $payerName = null, ?string $pickupCode = null, ?string $sourceToken = null, ?txnHistoryRespDeliveryType $deliveryType = null, ?string $clientTransferId = null, ?string $statusReason = null, ?int $clientId = null, ?string $userToken = null)
     {
         $this->token = $token;
         $this->type = $type;
