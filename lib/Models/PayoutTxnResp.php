@@ -64,11 +64,11 @@ class PayoutTxnResp
     /**
      * @var int $destinationAmount The amount to be sent for payout in source currency. i.e USD. Must be provided if source_amount is empty
      */
-    public int $destinationAmount;
+    public float $destinationAmount;
     /**
      * @var int $sourceAmount The amount to be received by the payout in source currency. i.e USD. Must be provided if destination_amount is empty
      */
-    public int $sourceAmount;
+    public float $sourceAmount;
     /**
      * @var string $attrSetToken Token that represents set of attributes that associated with destination_token. For example, bank account, mobile account, wallet id, etc. If not provided, uses the last one used. 36 characters long
      */
@@ -76,11 +76,11 @@ class PayoutTxnResp
     /**
      * @var int $exchangeRate The exchange rate to convert source_amount to destination_amount
      */
-    public int $exchangeRate;
+    public float $exchangeRate;
     /**
      * @var int $fee Fee to be charged for the transaction
      */
-    public int $fee;
+    public float $fee;
     /**
      * @var string $expiration The time and date at which the transaction will expire. The transaction has to be finalized before this time. Transactions are valid for 2 minutes from creation time. If expired, a new transaction has to be created.
      */
@@ -125,7 +125,7 @@ class PayoutTxnResp
      * @var array $attrs The relevant attributes that were used to fulfill this payout
      */
     public ?array $attrs;
-    public function __construct(string $payoutToken, string $clientTransferId, string $sourceCurrencyCode, string $destinationCurrencyCode, string $sourceToken, string $destinationToken, int $destinationAmount, int $sourceAmount, string $attrSetToken, int $exchangeRate, int $fee, string $expiration, string $pickupCode, payoutTxnRespStatus $status, string $payerName, payoutTxnRespDeliveryType $deliveryType, string $countryCode, string $estimatedAvailability, ?string $payerLogo = null, ?array $metadata = null, ?string $statusReason = null, ?array $attrs = null)
+    public function __construct(string $payoutToken, string $clientTransferId, string $sourceCurrencyCode, string $destinationCurrencyCode, string $sourceToken, string $destinationToken, float $destinationAmount, float $sourceAmount, string $attrSetToken, float $exchangeRate, float $fee, string $expiration, string $pickupCode, payoutTxnRespStatus $status, string $payerName, payoutTxnRespDeliveryType $deliveryType, string $countryCode, string $estimatedAvailability, ?string $payerLogo = null, ?array $metadata = null, ?string $statusReason = null, ?array $attrs = null)
     {
         $this->payoutToken = $payoutToken;
         $this->clientTransferId = $clientTransferId;
