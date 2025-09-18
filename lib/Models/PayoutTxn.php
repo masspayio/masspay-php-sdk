@@ -34,11 +34,11 @@ class PayoutTxn
     /**
      * @var int $destinationAmount The amount to be sent for payout in source currency. i.e USD. Must be provided if source_amount is empty
      */
-    public ?int $destinationAmount;
+    public ?float $destinationAmount;
     /**
      * @var int $sourceAmount The amount to be received by the payout in source currency. i.e USD. Must be provided if destination_amount is empty
      */
-    public ?int $sourceAmount;
+    public ?float $sourceAmount;
     /**
      * @var string $attrSetToken Token that represents set of attributes that associated with destination_token. For example, bank account, mobile account, wallet id, etc. If not provided, uses the last one used. 36 characters long
      */
@@ -55,7 +55,7 @@ class PayoutTxn
      * @var bool $autoCommit Auto commit would commit the payout without requiring the API call to the commit payout endpoint. This option is only available when the `source_currency` and the `destination_currency` are the same. Whenever an exchange rate is applied to a transaction, a separate commit call is required.
      */
     public ?bool $autoCommit;
-    public function __construct(string $destinationCurrencyCode, string $sourceToken, string $destinationToken, ?string $clientTransferId = null, ?string $sourceCurrencyCode = null, ?int $destinationAmount = null, ?int $sourceAmount = null, ?string $attrSetToken = null, ?array $metadata = null, ?bool $notifyUser = null, ?bool $autoCommit = null)
+    public function __construct(string $destinationCurrencyCode, string $sourceToken, string $destinationToken, ?string $clientTransferId = null, ?string $sourceCurrencyCode = null, ?float $destinationAmount = null, ?float $sourceAmount = null, ?string $attrSetToken = null, ?array $metadata = null, ?bool $notifyUser = null, ?bool $autoCommit = null)
     {
         $this->destinationCurrencyCode = $destinationCurrencyCode;
         $this->sourceToken = $sourceToken;
