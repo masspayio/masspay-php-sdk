@@ -42,7 +42,7 @@ class Loads
     /**
      * @var int $amount The amount to credit the user's wallet in source currency
      */
-    public int $amount;
+    public float $amount;
     /**
      * @var string $sourceCurrencyCode The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided
      */
@@ -59,7 +59,7 @@ class Loads
      * @var array $metadata Optional JSON object with attributes that can later be searched to locate this load. Do not include PII as this object is not encrypted.
      */
     public ?array $metadata;
-    public function __construct(string $loadToken, string $timeOfLoad, string $clientLoadId, string $sourceToken, string $walletToken, int $amount, string $sourceCurrencyCode, string $notes, loadsStatus $status, ?array $metadata = null)
+    public function __construct(string $loadToken, string $timeOfLoad, string $clientLoadId, string $sourceToken, string $walletToken, float $amount, string $sourceCurrencyCode, string $notes, loadsStatus $status, ?array $metadata = null)
     {
         $this->loadToken = $loadToken;
         $this->timeOfLoad = $timeOfLoad;
