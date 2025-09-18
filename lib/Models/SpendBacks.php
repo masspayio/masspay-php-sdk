@@ -34,7 +34,7 @@ class SpendBacks
     /**
      * @var int $amount The amount to credit the user's wallet in source currency
      */
-    public int $amount;
+    public float $amount;
     /**
      * @var string $sourceCurrencyCode The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided
      */
@@ -47,7 +47,7 @@ class SpendBacks
      * @var array $metadata Optional JSON object with attributes that can later be searched to locate this spendback. Do not include PII as this object is not encrypted.
      */
     public ?array $metadata;
-    public function __construct(string $spendbackToken, string $timeOfSpendback, string $clientSpendbackId, string $sourceToken, string $walletToken, int $amount, string $sourceCurrencyCode, string $notes, ?array $metadata = null)
+    public function __construct(string $spendbackToken, string $timeOfSpendback, string $clientSpendbackId, string $sourceToken, string $walletToken, float $amount, string $sourceCurrencyCode, string $notes, ?array $metadata = null)
     {
         $this->spendbackToken = $spendbackToken;
         $this->timeOfSpendback = $timeOfSpendback;
