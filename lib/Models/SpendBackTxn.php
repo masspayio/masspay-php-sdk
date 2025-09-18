@@ -26,7 +26,7 @@ class SpendBackTxn
     /**
      * @var int $amount The amount to debit the user's wallet in source currency
      */
-    public int $amount;
+    public float $amount;
     /**
      * @var string $notes A description for the spend back
      */
@@ -35,7 +35,7 @@ class SpendBackTxn
      * @var array $metadata Optional JSON object with attributes that can later be searched to locate this spendback. Do not include PII as this object is not encrypted.
      */
     public ?array $metadata;
-    public function __construct(string $clientSpendbackId, string $sourceToken, string $sourceCurrencyCode, int $amount, ?string $notes = null, ?array $metadata = null)
+    public function __construct(string $clientSpendbackId, string $sourceToken, string $sourceCurrencyCode, float $amount, ?string $notes = null, ?array $metadata = null)
     {
         $this->clientSpendbackId = $clientSpendbackId;
         $this->sourceToken = $sourceToken;
