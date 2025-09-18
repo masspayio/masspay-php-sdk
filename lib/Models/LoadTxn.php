@@ -22,7 +22,7 @@ class LoadTxn
     /**
      * @var int $amount The amount to credit the user's wallet in source currency
      */
-    public int $amount;
+    public float $amount;
     /**
      * @var string $sourceCurrencyCode The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided. There is a special currency case for PNTS - learn more [here] (#Points)
      */
@@ -43,7 +43,7 @@ class LoadTxn
      * @var array $metadata Optional JSON object with attributes that can later be searched to locate this load. Do not include PII as this object is not encrypted.
      */
     public ?array $metadata;
-    public function __construct(string $clientLoadId, string $sourceToken, int $amount, ?string $sourceCurrencyCode = null, ?string $notes = null, ?bool $notifyUser = null, ?string $timeToProcess = null, ?array $metadata = null)
+    public function __construct(string $clientLoadId, string $sourceToken, float $amount, ?string $sourceCurrencyCode = null, ?string $notes = null, ?bool $notifyUser = null, ?string $timeToProcess = null, ?array $metadata = null)
     {
         $this->clientLoadId = $clientLoadId;
         $this->sourceToken = $sourceToken;
